@@ -1,16 +1,19 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
-
+import os
 from flask import Flask
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.bcrypt import Bcrypt
 from flask.ext.login import LoginManager
 app = Flask(__name__)
 
-import os
-config = os.environ.get('APP_ENV', 'config.LocalhostConfig')
-app.config.from_object(config)
+
+from config import config
+app.config.from_object(
+    config.get(app.config.get('APP_ENV', 'localhost'))
+)
+
 
 db = MongoEngine(app)
 bcrypt = Bcrypt(app)
