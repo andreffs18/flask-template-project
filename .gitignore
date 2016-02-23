@@ -1,3 +1,14 @@
+# Custom
+*.env
+*.pyc
+*.ipynb_checkpoints
+*.ipynb
+*.log
+*.idea
+*.tsv
+*.DS_Store
+coverage/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

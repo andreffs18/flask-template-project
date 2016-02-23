@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title%}Annotation Tool | Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Welcome to the Annotation Tool <small>v1.0</small></h1>
+        <br>
+        <table class="table">
+        {% for post in posts %}
+            <tr>
+                <td><p><strong>Title:</strong> {{ post.title }}</p></td>
+                <td><p><strong>Body:</strong> {{ post.body}}</p></td>
+            </tr>
+        {% endfor %}
+        </table>
+
+
+        <ul>
+            <li><a href="{{ url_for('user.login') }}">Login</a></li>
+            <li><a href="{{ url_for('user.logout') }}">Logout</a></li>
+        </ul>
+    </div>
+{% endblock %}
