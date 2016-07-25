@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{% block title %}Flask Template Project{% endblock %}</title>
+    <title>{% block title %}Flask Template Project | Admin Panel{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,7 +9,6 @@
     <script src="{{ url_for('static', filename='js/lib/jquery-2.1.4.min.js') }}"></script>
 
     <!-- jQuery UI -->
-
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 
@@ -29,7 +28,7 @@
 </head>
 <body>
 
-<div class="page">
+<div class="page-admin">
     {% include "navigation.html" %}
     <!-- messages -->
     {% with messages = get_flashed_messages(with_categories=true) %}

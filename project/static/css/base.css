@@ -1,0 +1,56 @@
+@import url('http://fonts.googleapis.com/css?family=Open+Sans');
+body {
+  background-color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+}
+.navbar-custom {
+  background-color: #2b3e50;
+  color: #fff;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+  margin: 0;
+}
+.page-admin > .navbar-custom{
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 0;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+}
+.navbar-custom .navbar-nav > li > a {
+  color: #fff;
+  padding: auto 20px;
+}
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus {
+  background-color: #3e576d;
+}
+.navbar-custom .navbar-brand {
+  color: #fff;
+}
+.navbar-custom .btn-link {
+  color: #fff;
+}
+.btn-group-header {
+  padding: 10px 5px;
+}
+.home-header {
+  padding: 10px 30px;
+}
+.stats-btn {
+  background-color: transparent;
+  color: #2499d3;
+}
+table {
+  margin: 2% 0;
+}
+table thead {
+  background-color: #eaedef;
+  color: #5a6672;
+}
+table th,
+table td {
+  text-align: left;
+  height: 40px;
+}

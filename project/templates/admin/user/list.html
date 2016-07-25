@@ -1,0 +1,53 @@
+<div class="btn-group">
+    <br/>
+    <a href="{{ url_for('admin.user_create') }}"><button type="button" class="btn btn-default">
+        <span class="glyphicon glyphicon-userr" aria-hidden="true"></span>&nbsp;Create New User
+    </button></a>
+</div>
+
+
+<h2>{{ users.total }} users available</h2>
+<table class="table table-condensed table-striped table-hover">
+    <thead>
+        <th>#</th>
+        <th>Username</th>
+        <th>Email</th>
+        <th></th>
+    </thead>
+    <tbody>
+        {% for user in users.items %}
+        <tr id="{{ user.id }}">
+            <td><a href="{{ url_for('admin.user_detail', user_id=user.id) }}">{{ user.id }}</a></td>
+            <td><a href="{{ url_for('admin.user_detail', user_id=user.id) }}">{{ user.username }}</a></td>
+            <td>{{ user.email }}</td>
+            <td class="actions">
+                <a href="{{ url_for("admin.user_toggle", user_id=user.id, action="remove") }}">
+                <button data-action="remove" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>&nbsp;Remove
+                </button>
+                </a>
+                <a href="{{ url_for("admin.user_toggle", user_id=user.id, action="is_admin") }}">
+                <button data-action="remove" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-king" aria-hidden="true"></span>&nbsp;Toggle {% if user.is_admin %}Off{% else %}On{% endif %} Admin
+                </button>
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav>
+    <ul class="pager">
+        {% if users.has_prev %}
+            <li><a href="?user-page={{ users.prev_num }}#users" aria-label="Previous"><span aria-hidden="true">&laquo; Previous</span></a></li>
+        {% endif %}
+
+        {% if users.has_next %}
+            <li><a href="?user-page={{ users.next_num }}#users" aria-label="Next"><span aria-hidden="true">Next &raquo;</span></a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+<script type="text/javascript">
+</script>

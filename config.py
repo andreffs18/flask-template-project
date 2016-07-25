@@ -1,44 +1,52 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
-__author__ = "andresilva"
-__email__ = "andre@unbabel.com"
-from project import app
-from flask.ext.dotenv import DotEnv
-env = DotEnv()
-env.init_app(app, verbose_mode=True)
-
+import os
 
 class BaseConfig(object):
     DEBUG = False
-    SECRET_KEY = app.config["SECRET_KEY"]
-    MONGODB_SETTINGS = {
-        "DB": app.config.get("MONGO_DB_NAME", "default")
-    }
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    MONGODB_DB = os.environ.get("MONGODB_DB", "default")
+    MONGODB_DB_TEST = os.environ.get("MONGODB_DB_TEST", "default_test")
 
-    # Custom db credentials
-    MONGODB_ALIAS = None
-    MONGODB_DB = None
-    MONGODB_HOST = None
-    MONGODB_PASSWORD = None
-    MONGODB_PORT = None
-    MONGODB_USERNAME = None
+    # app.config['RQ_DEFAULT_HOST'] = 'somewhere.com'
+    # app.config['RQ_DEFAULT_PORT'] = 6479
+    # app.config['RQ_DEFAULT_PASSWORD'] = 'password'
+    # app.config['RQ_DEFAULT_DB'] = 1
 
 class TestConfig(BaseConfig):
     DEBUG = True
     TESTING = True
-    WTF_CSRF_ENABLE = False
-    MONGODB_SETTINGS = {
-        "DB": app.config.get("MONGO_DB_NAME_TEST", "default-test")
-    }
+    WTF_CSRF_ENABLED = False
+    DEBUG_TB_PROFILER_ENABLED = False
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
+    # TODO: run tests in local memory.
+    MONGODB_DB = BaseConfig.MONGODB_DB_TEST
 
 
 class LocalhostConfig(BaseConfig):
     DEBUG = True
+    DEBUG_TB_PROFILER_ENABLED = True
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
+    # TODO not working because current version of DebugToolbar doesn't allow this.
+    DEBUG_TB_PANELS = (
+        'flask_debugtoolbar.panels.versions.VersionDebugPanel',
+        'flask_debugtoolbar.panels.timer.TimerDebugPanel',
+        'flask_debugtoolbar.panels.headers.HeaderDebugPanel',
+        'flask_debugtoolbar.panels.request_vars.RequestVarsDebugPanel',
+        'flask_debugtoolbar.panels.config_vars.ConfigVarsDebugPanel',
+        'flask_debugtoolbar.panels.template.TemplateDebugPanel',
+        'flask_debugtoolbar.panels.sqlalchemy.SQLAlchemyDebugPanel',
+        'flask_debugtoolbar.panels.logger.LoggingPanel',
+        'flask_debugtoolbar.panels.route_list.RouteListDebugPanel',
+        'flask_debugtoolbar.panels.profiler.ProfilerDebugPanel',
+        'flask_mongoengine.panels.MongoDebugPanel',
+    )
 
 
 class ProductionConfig(BaseConfig):
     DEBUG = False
+    TESTING = False
 
 
 config = {
