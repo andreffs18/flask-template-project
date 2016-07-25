@@ -17,6 +17,10 @@ Empty **Flask** project with already some packages
 - [Base tutorial (~5hours)](https://www.youtube.com/watch?v=WfpFUmV1d0w&list=PLLjmbh6XPGK4ISY747FUHXEl9lBxre4mM&feature=share)
 - [Create a flask project by example](https://realpython.com/blog/python/flask-by-example-part-1-project-setup/)
 
+### Improvements
+
+
+- [API Framework](https://flask-restless.readthedocs.org/en/latest/)
 
 Fork, clone, share! 
 
