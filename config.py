@@ -5,18 +5,14 @@ import os
 
 class BaseConfig(object):
     DEBUG = False
+    TESTING = True
     SECRET_KEY = os.environ.get("SECRET_KEY")
     MONGODB_DB = os.environ.get("MONGODB_DB", "default")
     MONGODB_DB_TEST = os.environ.get("MONGODB_DB_TEST", "default_test")
 
-    # app.config['RQ_DEFAULT_HOST'] = 'somewhere.com'
-    # app.config['RQ_DEFAULT_PORT'] = 6479
-    # app.config['RQ_DEFAULT_PASSWORD'] = 'password'
-    # app.config['RQ_DEFAULT_DB'] = 1
 
 class TestConfig(BaseConfig):
     DEBUG = True
-    TESTING = True
     WTF_CSRF_ENABLED = False
     DEBUG_TB_PROFILER_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
@@ -44,6 +40,13 @@ class LocalhostConfig(BaseConfig):
     )
 
 
+class StagingConfig(BaseConfig):
+    DEBUG = True
+    TESTING = False
+    DEBUG_TB_PROFILER_ENABLED = True
+    DEBUG_TB_INTERCEPT_REDIRECTS = False
+
+
 class ProductionConfig(BaseConfig):
     DEBUG = False
     TESTING = False
@@ -53,6 +56,7 @@ config = {
     '_baseconfig': BaseConfig,
     'localhost': LocalhostConfig,
     'test': TestConfig,
+    'staging': StagingConfig,
     'production': ProductionConfig,
 }
 

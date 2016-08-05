@@ -3,10 +3,9 @@
 [run]
 omit =
 	*__init__.py
-	*config.py
-	*tests/*
-	*tests.py
-	*test_*
-	*migration.py
+	*migrations.py
+	config.py
 	manage.py
 	project/commands/*
+	project/*tests/*
+	test_*
