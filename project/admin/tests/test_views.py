@@ -21,6 +21,3 @@ class AdminViewsTestCase(MVCTestCase):
         res = self.client.get(url_for("admin.home_users"),
                               follow_redirects=True)
         self.assertEqual(res.status_code, 200)
-        res = self.client.get(url_for("admin.home_posts"),
-                              follow_redirects=True)
-        self.assertEqual(res.status_code, 200)
