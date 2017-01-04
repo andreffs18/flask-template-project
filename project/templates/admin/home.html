@@ -8,7 +8,8 @@
     <!-- Nav tabs -->
     <ul id="admin-tabs" class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
-        <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Posts</a></li>
+        <li role="presentation"><a href="#other" aria-controls="other" role="tab" data-toggle="tab">Other</a></li>
+        <li role="presentation"><a href="#api" aria-controls="api" role="tab" data-toggle="tab">API</a></li>
     </ul>
 
     {% macro load_gif(index) %}
@@ -22,8 +23,16 @@
         <div role="tabpanel" class="tab-pane active" id="users">
             {% include "admin/user/list.html" %}
         </div>
-        <div role="tabpanel" class="tab-pane" id="posts">
+        <div role="tabpanel" class="tab-pane" id="other">
             {{ load_gif(2) }}
+        </div>
+        <div role="tabpanel" class="tab-pane" id="api">
+            <legend>Available endpoints:</legend>
+            <ul>
+                {% for resource in resources %}
+                <li>{{ resource.1 }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

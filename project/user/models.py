@@ -4,9 +4,10 @@
 import random
 import string
 import mongoengine as me
-from flask.ext.login import UserMixin, AnonymousUserMixin
-from flask.ext.bcrypt import generate_password_hash
 from werkzeug.local import LocalProxy
+
+from flask_login import UserMixin, AnonymousUserMixin
+from flask_bcrypt import generate_password_hash
 
 
 class User(UserMixin, me.Document):
@@ -14,9 +15,8 @@ class User(UserMixin, me.Document):
     username = me.StringField(required=True, unique=True)
     password = me.StringField(required=True)
     api_key = me.StringField(required=False)
-    email = me.StringField(required=False)
-
     is_admin = me.BooleanField(default=False)
+
     _is_deleted = me.BooleanField(default=False)
 
     def __str__(self):
@@ -32,13 +32,13 @@ class User(UserMixin, me.Document):
         # 'allow_inheritance': True,
         'indexes': [
             ('username',),
-            ('email',),
         ],
     }
 
     @me.queryset_manager
     def _objects(doc_cls, queryset):
-        """"""
+        """Original queryset manager for this object that return every
+        collection available in the database"""
         return queryset
 
     @me.queryset_manager
@@ -86,16 +86,13 @@ class User(UserMixin, me.Document):
             return User.objects.get(id=user)
 
     @classmethod
-    def create(cls, username, password, email, generate_api_key=True,
+    def create(cls, username, password, generate_api_key=True,
                *args, **kwargs):
         """Aux method to create user MongoObject"""
-        kwargs.update(dict([
-            ("username", username),
-            ("password", password),
-            ("email", email),
-        ]))
+        kwargs.update(dict(username=username))
 
         user = User(**kwargs)
+        user.reset_password(new_password=password)
         user.save()
 
         if generate_api_key:

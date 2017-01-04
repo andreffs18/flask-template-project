@@ -15,12 +15,8 @@ class LoginForm(Form):
 
 
 class RegisterForm(Form):
-    username = wtf.StringField('Username', validators=[
-        v.DataRequired(), v.Length(min=3)])
-    email = wtf.StringField('Email', validators=[
-        v.DataRequired(), v.Length(min=3), v.Email()])
-    password = wtf.PasswordField('Password', validators=[
-        v.DataRequired(), v.Length(min=6, max=128)])
+    username = wtf.StringField('Username', validators=[v.DataRequired()])
+    password = wtf.PasswordField('Password', validators=[v.DataRequired()])
     confirm_password = wtf.PasswordField('Confirm Password', validators=[
         v.DataRequired(), v.EqualTo('password')])
 
@@ -33,14 +29,3 @@ class RegisterForm(Form):
         except me.DoesNotExist:
             pass
         return username
-
-    def validate_email(form, field):
-        email = field.data
-        try:
-            umodels.User.objects.get(email=email)
-            raise v.ValidationError("Email \"{}\" already exists. "
-                                    "Did you forget your password?"
-                                    "".format(email))
-        except me.DoesNotExist:
-            pass
-        return email

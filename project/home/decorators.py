@@ -1,7 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """Created by andresilva on 7/8/16"""
-from flask.ext.login import wraps, current_user, current_app as app
+from flask_login import wraps, current_user, current_app as app
 
 
 def admin_required(func):

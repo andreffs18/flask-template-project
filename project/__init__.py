@@ -9,7 +9,7 @@ def read_env(app, config_class):
     """config environment variables and override with .env declared ones.
     use configuration given by environment variable APP_ENV if "config_class"
     is not given"""
-    from flask.ext.dotenv import DotEnv
+    from flask_dotenv import DotEnv
     env = DotEnv()
     env.init_app(app)
     # get all new .env variable and add them to os.environ dict
@@ -50,27 +50,33 @@ def create_app(config=None):
 
     # setup apps
     from flask_debugtoolbar import DebugToolbarExtension
-    from flask.ext.mongoengine import MongoEngine
-    from flask.ext.bcrypt import Bcrypt
-    from flask.ext.rq import RQ
-    from flask.ext.login import LoginManager
+    from flask_mongoengine import MongoEngine
+    from flask_bcrypt import Bcrypt
+    from flask_rq import RQ
+    from flask_restful import Api
+    from flask_login import LoginManager
 
     DebugToolbarExtension(app)
     MongoEngine(app)
     Bcrypt(app)
     RQ(app)
+    api = Api(app)
     login_manager = LoginManager(app)
 
     # register view blueprints
+    from project.home.views import app_blueprint
     from project.admin.views import admin_blueprint
     from project.user.views import user_blueprint
-    from project.blog.views import blog_blueprint
-    from project.home.views import app_blueprint
 
+    app.register_blueprint(app_blueprint)
     app.register_blueprint(admin_blueprint)
     app.register_blueprint(user_blueprint)
-    app.register_blueprint(blog_blueprint)
-    app.register_blueprint(app_blueprint)
+
+    # register api endpoints
+    from api import Resources, API_VERSION
+    for resource, url in Resources:
+        _endpoint = ".".join(API_VERSION.format(url).split("/")[1:-1])
+        api.add_resource(resource, API_VERSION.format(url), endpoint=_endpoint)
 
     # import custom login manager functions
     from project.home.login_manager import load_user_from_request, load_user
@@ -80,8 +86,6 @@ def create_app(config=None):
 
     return app
 
-
+__version_info__ = ('1', '0', '0')
 __author__ = "andresilva"
-__version_info__ = ('0', '0', '1')
-__version__ = '.'.join(__version_info__)
 __email__ = "andre@unbabel.com"

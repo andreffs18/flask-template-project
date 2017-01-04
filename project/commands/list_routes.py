@@ -4,7 +4,7 @@
 import urllib
 from flask import url_for, current_app as app
 
-from flask.ext.script import Command
+from flask_script import Command
 
 
 class ListRoutesCommand(Command):

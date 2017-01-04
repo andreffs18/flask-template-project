@@ -3,12 +3,13 @@
 """ Created by andresilva on 2/19/16"""
 import os
 
+
 class BaseConfig(object):
     DEBUG = False
     TESTING = True
+    MACHINE_NAME = "Flask Template Project"
     SECRET_KEY = os.environ.get("SECRET_KEY")
-    MONGODB_DB = os.environ.get("MONGODB_DB", "default")
-    MONGODB_DB_TEST = os.environ.get("MONGODB_DB_TEST", "default_test")
+    MONGODB_DB = os.environ.get("MONGO_DB", "default")
 
 
 class TestConfig(BaseConfig):
@@ -16,8 +17,7 @@ class TestConfig(BaseConfig):
     WTF_CSRF_ENABLED = False
     DEBUG_TB_PROFILER_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
-    # TODO: run tests in local memory.
-    MONGODB_DB = BaseConfig.MONGODB_DB_TEST
+    MONGODB_DB = os.environ.get("MONGO_DB_TEST", "default_test")
 
 
 class LocalhostConfig(BaseConfig):

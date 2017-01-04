@@ -3,9 +3,9 @@
 """ Created by andresilva on 2/19/16"""
 
 from flask import redirect, render_template, request, url_for, Blueprint
-from flask.ext.login import (login_user, login_required, logout_user,
-                             current_user)
-from flask.ext.bcrypt import generate_password_hash, check_password_hash
+from flask_login import (login_user, login_required, logout_user,
+                         current_user)
+from flask_bcrypt import check_password_hash
 
 import project.user.forms as uforms
 import project.user.models as umodels
@@ -25,9 +25,7 @@ def settings():
 def register():
     form = uforms.RegisterForm(request.form)
     if form.validate_on_submit():
-        pw_hash = generate_password_hash(form.password.data)
-        user = umodels.User.create(
-            form.username.data, pw_hash, form.email.data)
+        user = umodels.User.create(form.username.data, form.password.data)
         login_user(user)
         flash.info('Welcome {}.'.format(str(user)))
         return redirect(request.args.get('next', url_for('app.home')))

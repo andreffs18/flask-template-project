@@ -3,8 +3,9 @@
 """Created by andresilva on 6/15/16"""
 
 from flask import current_app as app
-from flask.ext.script import Command, Option
-from flask.ext.rq import get_worker
+from flask_script import Command
+from flask_rq import get_worker
+
 
 class WorkerCommand(Command):
     """runs Worker instance"""

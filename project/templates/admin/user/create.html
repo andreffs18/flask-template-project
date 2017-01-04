@@ -30,17 +30,6 @@
         </p>
 
         <p>
-            {{ form.email(placeholder="Email") }}
-            <span class="error">
-                {% if form.email.errors %}
-                    {% for error in form.email.errors %}
-                        {{ error }}
-                    {% endfor %}
-                {% endif %}
-            </span>
-        </p>
-
-        <p>
             {{ form.is_admin }}&nbsp;{{ form.is_admin.label }}
             <span class="error">
                 {% if form.is_admin.errors %}

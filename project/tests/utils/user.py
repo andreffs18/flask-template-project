@@ -13,19 +13,16 @@ class UserTestUtils(object):
         super(UserTestUtils, self).setUp()
 
     @staticmethod
-    def create_user(username=None, password=None, email=None, is_admin=False):
+    def create_user(username=None, password=None, is_admin=False):
         """Aux test method that creates user from given arguments"""
         if username is None:
             username = "username"
         if password is None:
             password = "password"
-        if email is None:
-            email = username + "@test.com"
 
         kwargs = dict([
             ("username", username),
-            ("password", generate_password_hash(password)),
-            ("email", email),
+            ("password", password),
             ("is_admin", is_admin)
         ])
         return umodels.User.create(**kwargs)

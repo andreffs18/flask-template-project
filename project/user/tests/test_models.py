@@ -8,6 +8,7 @@ from flask.ext.login import current_user, login_user
 from project.tests.base import MVCTestCase
 import project.user.models as umodels
 
+
 class UserModelTestCase(MVCTestCase):
 
     def setUp(self):
@@ -25,11 +26,9 @@ class UserModelTestCase(MVCTestCase):
         """Ensure when creating a User Object that the method used to create
         the user assigns all fields correctly"""
         user = umodels.User.create(username="my_username",
-                                   password="my_password",
-                                   email="my_email@test.com")
+                                   password="my_password")
         self.assertEqual(user.username, "my_username")
         self.assertEqual(user.password, "my_password")
-        self.assertEqual(user.email, "my_email@test.com")
 
     def test_get_user(self):
         """Ensure get_user classmethod is returning always what we expect"""
@@ -64,4 +63,3 @@ class UserModelTestCase(MVCTestCase):
         self.user.delete(force=True)
         self.assertEqual(0, umodels.User.objects.count())
         self.assertEqual(0, umodels.User._objects.count())
-

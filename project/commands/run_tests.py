@@ -5,7 +5,7 @@
 import unittest
 
 from flask import current_app as app
-from flask.ext.script import Command, Option
+from flask_script import Command, Option
 
 
 class TestCommand(Command):
@@ -34,5 +34,3 @@ class TestCommand(Command):
         else:
             tests = unittest.TestLoader().loadTestsFromName(self.test_name)
         unittest.TextTestRunner(verbosity=2).run(tests)
-
-

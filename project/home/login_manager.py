@@ -5,7 +5,7 @@
 import base64
 import mongoengine as me
 from flask import current_app as app
-from flask.ext.bcrypt import check_password_hash
+from flask_bcrypt import check_password_hash
 
 import project.user.models as umodels
 

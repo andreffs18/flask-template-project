@@ -21,17 +21,6 @@
         </p>
 
         <p>
-            {{ form.email(placeholder="email") }}
-            <span class="error">
-                {% if form.email.errors %}
-                    {% for error in form.email.errors %}
-                        {{ error }}
-                    {% endfor %}
-                {% endif %}
-            </span>
-        </p>
-
-        <p>
             {{ form.password(placeholder="password") }}
             <span class="error">
                 {% if form.password.errors %}

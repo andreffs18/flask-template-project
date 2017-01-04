@@ -3,8 +3,8 @@
 """ Created by andresilva on 2/19/16"""
 import mongoengine as me
 from flask import redirect, abort, render_template, request, url_for
-from flask.ext.login import login_required
-from flask.ext.bcrypt import generate_password_hash
+from flask_login import login_required
+from flask_bcrypt import generate_password_hash
 from project.admin.views import admin_blueprint
 from project.home.decorators import admin_required
 
@@ -21,9 +21,7 @@ def user_create(user_id=None):
     form = auforms.CreateForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            pw_hash = generate_password_hash(form.password.data)
-            user = umodels.User.create(form.username.data, pw_hash,
-                                       form.email.data)
+            user = umodels.User.create(form.username.data, form.password.data)
             # setting user admin variable
             user.is_admin = form.is_admin.data
             user.save()

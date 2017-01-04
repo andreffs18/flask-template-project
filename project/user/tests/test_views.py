@@ -4,6 +4,7 @@
 from flask import url_for
 from project.tests.base import MVCTestCase
 
+
 class UserViewsTestCase(MVCTestCase):
 
     def setUp(self):
@@ -11,7 +12,7 @@ class UserViewsTestCase(MVCTestCase):
 
     def test_login_page_loads(self):
         # Ensure login page loads as expected
-        res  = self.client.get(url_for("user.login"),
+        res = self.client.get(url_for("user.login"),
                                follow_redirects=True)
         self.assertIn(b'Please login', res.data)
         self.assertEqual(res.status_code, 200)
@@ -28,7 +29,7 @@ class UserViewsTestCase(MVCTestCase):
         res = self.client.post(url_for("user.login"), data=data,
                                follow_redirects=True)
         self.assertIn(b'Welcome username.', res.data)
-        res  = self.client.get(url_for("user.settings"),
+        res = self.client.get(url_for("user.settings"),
                                follow_redirects=True)
         self.assertIn(b'Welcome to your dashboard username.', res.data)
         self.assertEqual(res.status_code, 200)
@@ -40,24 +41,17 @@ class UserViewsTestCase(MVCTestCase):
                               follow_redirects=True)
         self.assertEqual(res.status_code, 200)
         # test: post request, creates new user with the following data
-        data = dict(username="myusername", email="myusername@test.com",
-                    password="mypassword", confirm_password="mypassword")
+        data = dict(username="myusername", password="mypassword",
+                    confirm_password="mypassword")
         res = self.client.post(url_for("user.register"), data=data,
                                follow_redirects=True)
         self.assertIn(b'Welcome myusername.', res.data)
         # test: try to register same username
-        data = dict(username="myusername", email="differentusername@test.com",
-                    password="mypassword", confirm_password="mypassword")
+        data = dict(username="myusername", password="mypassword",
+                    confirm_password="mypassword")
         res = self.client.post(url_for("user.register"), data=data,
                                follow_redirects=True)
         self.assertIn(b'Username &#34;myusername&#34; already exists.',
-                      res.data)
-        # test: try to register same email
-        data = dict(username="differentusername", email="myusername@test.com",
-                    password="mypassword", confirm_password="mypassword")
-        res = self.client.post(url_for("user.register"), data=data,
-                               follow_redirects=True)
-        self.assertIn(b'Email &#34;myusername@test.com&#34; already exists.',
                       res.data)
 
     def test_logout(self):
