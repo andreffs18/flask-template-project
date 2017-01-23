@@ -32,7 +32,7 @@
 
             {{ form.password(placeholder="password", class_=' '.join(password_class)) }}
 
-            {% if form.username.errors %}
+            {% if form.password.errors %}
                 {% for error in form.password.errors %}
                     <small class="form-control-feedback">{{ error }}</small>
                 {% endfor %}
