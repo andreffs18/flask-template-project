@@ -7,9 +7,9 @@
 
     <!-- Nav tabs -->
     <ul id="admin-tabs" class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
-        <li role="presentation"><a href="#other" aria-controls="other" role="tab" data-toggle="tab">Other</a></li>
-        <li role="presentation"><a href="#api" aria-controls="api" role="tab" data-toggle="tab">API</a></li>
+        <li role="presentation" class="nav-item"><a href="#users" class="nav-link active" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
+        <li role="presentation" class="nav-item"><a href="#other" class="nav-link" aria-controls="other" role="tab" data-toggle="tab">Other</a></li>
+        <li role="presentation" class="nav-item"><a href="#api" class="nav-link" aria-controls="api" role="tab" data-toggle="tab">API</a></li>
     </ul>
 
     {% macro load_gif(index) %}
@@ -19,7 +19,7 @@
     {% endmacro %}
 
     <!-- Tab panes -->
-    <div class="tab-content">
+    <div class="tab-content pt-4">
         <div role="tabpanel" class="tab-pane active" id="users">
             {% include "admin/user/list.html" %}
         </div>
