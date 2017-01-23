@@ -43,14 +43,14 @@ body {
   color: #2499d3;
 }
 table {
-  margin: 2% 0;
+  /* margin: 2% 0; */
 }
 table thead {
-  background-color: #eaedef;
-  color: #5a6672;
+  background-color: #f7f7f7;
+  color: #808080;
 }
 table th,
 table td {
   text-align: left;
-  height: 40px;
+  /* height: 40px; */
 }
