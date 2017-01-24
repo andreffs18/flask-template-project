@@ -28,7 +28,7 @@
             <label for="password" class="form-control-label">Password</label>
 
             {% set password_class = ['form-control'] %}
-            {% do password_class.append('form-control-danger') if form.username.errors %}
+            {% do password_class.append('form-control-danger') if form.password.errors %}
 
             {{ form.password(placeholder="password", class_=' '.join(password_class)) }}
 
