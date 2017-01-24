@@ -43,7 +43,8 @@ body {
   background-color: transparent;
   color: #2499d3;
 }
-table {
+.sidebar .nav {
+  margin-bottom: 20px;
 }
 table thead {
   background-color: #f7f7f7;
@@ -52,4 +53,14 @@ table thead {
 table th,
 table td {
   text-align: left;
+}
+
+/* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
+}
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
