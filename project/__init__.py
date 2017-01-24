@@ -87,6 +87,10 @@ def create_app(config=None):
     # jinja extensions
     app.jinja_env.add_extension('jinja2.ext.do')
 
+    # default flashed messages category
+    login_manager.login_message_category = 'info'
+    login_manager.needs_refresh_message_category = 'info'
+
     return app
 
 __version_info__ = ('1', '0', '0')
