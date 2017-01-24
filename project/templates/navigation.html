@@ -19,7 +19,7 @@
         <ul class="navbar-nav">
             {% if not current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a href="{{ url_for('user.login') }}">
+                    <a href="{{ url_for('user.login') }}" class="nav-link">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Login
                     </a>
                 </li>
