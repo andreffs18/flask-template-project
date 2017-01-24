@@ -13,10 +13,9 @@ body {
   font-weight: bold;
   margin: 0;
 }
-.page-admin > .navbar-custom{
+.page-admin > .navbar-custom {
   background-color: #000000;
   color: #ffffff;
-  border-radius: 0;
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
@@ -45,7 +44,6 @@ body {
   color: #2499d3;
 }
 table {
-  /* margin: 2% 0; */
 }
 table thead {
   background-color: #f7f7f7;
@@ -54,5 +52,4 @@ table thead {
 table th,
 table td {
   text-align: left;
-  /* height: 40px; */
 }
