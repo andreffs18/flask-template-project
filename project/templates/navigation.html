@@ -1,43 +1,47 @@
-<nav class="navbar navbar-static-top navbar-custom">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url_for('app.home') }}">Flask Template Project</a>
-        </div>
+<nav class="navbar navbar-static-top navbar-toggleable-md navbar-custom mb-4">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <a class="navbar-brand" href="{{ url_for('app.home') }}">Flask Template Project</a>
 
-            <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('admin.home') }}">
+     <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a href="{{ url_for('admin.home') }}" class="nav-link">
                     <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>&nbsp;Admin
-                </a></li>
-            </ul>
+                </a>
+            </li>
+        </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if not current_user.is_authenticated %}
-                    <li><a href="{{ url_for('user.login') }}">
+        <ul class="navbar-nav">
+            {% if not current_user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{{ url_for('user.login') }}" class="nav-link">
                         <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span>&nbsp;Login
-                    </a></li>
-                {% else %}
-                    <div class="btn-group btn-group-sm btn-group-header">
-                        <button type="button" class="btn btn-default">Hi {{ current_user.username|capitalize }}!</button>
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ url_for('user.settings') }}">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Settings
-                            </a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="{{ url_for('user.logout') }}">
-                                <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
-                            </a></li>
-                        </ul>
+                    </a>
+                </li>
+            {% else %}
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-secondary">Hi {{ current_user.username|capitalize }}!</button>
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a href="{{ url_for('user.settings') }}" class="dropdown-item">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="{{ url_for('user.logout') }}" class="dropdown-item">
+                            <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Logout
+                        </a>
                     </div>
-                {% endif %}
-            </ul>
+                </div>
+            {% endif %}
+        </ul>
 
-        </div>
     </div>
 </nav>

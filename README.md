@@ -42,6 +42,20 @@ You have a list of available commands in the project manager. To run this projec
  * Debugger is active!
  * Debugger pin code: 281-707-369
 ```
+
+### Creating an admin user
+
+```shell
+$ python manage.py shell
+>>> import project.user.models as umodels
+>>> umodels.User.create('admin', 'youradminpass', True)
+<User: admin>
+>>> admin = umodels.User.objects.filter(username='admin').first()
+>>> admin.is_admin = True
+>>> admin.save()
+<User: admin>
+```
+
 ## Contributing
 
 We deeply appreciate if you want to contribute to this project. To do so, please follow [these](#) guidelines.
