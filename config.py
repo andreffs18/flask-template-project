@@ -11,6 +11,12 @@ class BaseConfig(object):
     SECRET_KEY = os.environ.get("SECRET_KEY")
     MONGODB_DB = os.environ.get("MONGO_DB", "default")
 
+    # Third party services
+    # codacy.com
+    # Coverage given by codacy.com. You need to register you project
+    # there so they can give you the access token for this functionality
+    CODACY_PROJECT_TOKEN = os.environ.get("CODACY_PROJECT_TOKEN")
+
 
 class TestConfig(BaseConfig):
     DEBUG = True
