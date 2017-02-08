@@ -47,26 +47,6 @@ You have a list of available commands in the project manager. To run this projec
  * Debugger pin code: 281-707-369
 ```
 
-### Creating an admin user
-
-```shell
-(flask-template-project) $ python manage.py create-user --help
-usage: manage.py create-user [-?] [-u USERNAME] [-p PASSWORD] [--is_admin]
-
-Creates user by giving username and password
-
-optional arguments:
-  -?, --help            show this help message and exit
-  -u USERNAME, --username USERNAME
-  -p PASSWORD, --password PASSWORD
-  --is_admin
-
-(flask-template-project) $ python manage.py create-user -u "username" -p "password" --is_admin
-[INFO] - Running CreateUserCommand with arguments {'username': 'username', 'password': 'password', 'is_admin': True}
-[INFO] - User "username" was successfully created!
-(flask-template-project) $
-```
-
 ## Contributing
 
 We deeply appreciate if you want to contribute to this project. To do so, please follow [these](#) guidelines.
