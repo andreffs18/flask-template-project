@@ -12,7 +12,7 @@ This is ready-to-go, empty, bootstrapped, **Flask** project with some neat featu
 * [Contributing](#contributing)
 * [Credits](#credits)
 * [License](#license)
-<!--* [Wiki and FAQ's](#wiki-and-faqs)-->
+* [Wiki and FAQ's](#wiki-and-faqs)
 
 
 ## Installation
