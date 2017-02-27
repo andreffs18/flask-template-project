@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
-from flask import render_template, Blueprint
+from flask import redirect, Blueprint
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())
@@ -13,4 +13,4 @@ app_blueprint = Blueprint('app', __name__)
 
 @app_blueprint.route('/')
 def home():
-    return render_template("home.html")
+    return redirect("https://www.unbabel.com", code=301)
