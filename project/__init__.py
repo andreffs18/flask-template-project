@@ -49,47 +49,25 @@ def create_app(config=None):
     del app.logger.handlers[0]
 
     # setup apps
-    from flask_debugtoolbar import DebugToolbarExtension
-    from flask_mongoengine import MongoEngine
-    from flask_bcrypt import Bcrypt
     from flask_rq import RQ
-    from flask_restful import Api
-    from flask_login import LoginManager
+    from flask_bcrypt import Bcrypt
+    from flask_mongoengine import MongoEngine
+    from flask_debugtoolbar import DebugToolbarExtension
 
     DebugToolbarExtension(app)
     MongoEngine(app)
     Bcrypt(app)
     RQ(app)
-    api = Api(app)
-    login_manager = LoginManager(app)
 
     # register view blueprints
-    from project.home.views import app_blueprint
+    from project.reporting.views import app_blueprint
     from project.admin.views import admin_blueprint
-    from project.user.views import user_blueprint
 
     app.register_blueprint(app_blueprint)
-    app.register_blueprint(admin_blueprint)
-    app.register_blueprint(user_blueprint)
-
-    # register api endpoints
-    from api import Resources, API_VERSION
-    for resource, url in Resources:
-        _endpoint = ".".join(API_VERSION.format(url).split("/")[1:-1])
-        api.add_resource(resource, API_VERSION.format(url), endpoint=_endpoint)
-
-    # import custom login manager functions
-    from project.home.login_manager import load_user_from_request, load_user
-    login_manager.login_view = "user.login"
-    login_manager.user_loader(load_user)
-    login_manager.request_loader(load_user_from_request)
+    app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
     # jinja extensions
     app.jinja_env.add_extension('jinja2.ext.do')
-
-    # default flashed messages category
-    login_manager.login_message_category = 'info'
-    login_manager.needs_refresh_message_category = 'info'
 
     return app
 

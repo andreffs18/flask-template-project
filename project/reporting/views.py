@@ -1,7 +1,12 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/19/16"""
+import logging
+
 from flask import render_template, Blueprint
+
+log = logging.getLogger(__name__)
+log.addHandler(logging.StreamHandler())
+log.setLevel(logging.DEBUG)
 
 app_blueprint = Blueprint('app', __name__)
 

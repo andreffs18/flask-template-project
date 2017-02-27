@@ -17,7 +17,7 @@ class AdminViewsTestCase(MVCTestCase):
                          follow_redirects=True)
 
     def test_home_view_redirects(self):
-        # Ensure all redirects from admin.home are working fine
+        # Ensure all redirects from admin.reporting are working fine
         res = self.client.get(url_for("admin.home_users"),
                               follow_redirects=True)
         self.assertEqual(res.status_code, 200)
