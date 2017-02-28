@@ -2,7 +2,49 @@
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
 import os
+
 from flask import Flask
+from pymongo import MongoClient
+
+
+def get_cpw_db():
+    host = os.environ.get("MONGO_CPW_URL")
+    dbname = os.environ.get("MONGO_CPW_NAME")
+
+    client = MongoClient(host, connect=False)
+    db = client.get_database(dbname)
+
+    return db
+
+
+def get_unbabel_db():
+    host = os.environ.get("MONGO_UNBABEL_URL")
+    dbname = os.environ.get("MONGO_UNBABEL_NAME")
+
+    client = MongoClient(host, connect=False)
+    db = client.get_database(dbname)
+
+    return db
+
+
+def get_zendesk_db():
+    host = os.environ.get("MONGO_ZENDESK_URL")
+    dbname = os.environ.get("MONGO_ZENDESK_NAME")
+
+    client = MongoClient(host, connect=False)
+    db = client.get_database(dbname)
+
+    return db
+
+
+def get_customer_reporting_db():
+    host = os.environ.get("MONGO_CUSTOMER_REPORTING_URL")
+    dbname = os.environ.get("MONGO_CUSTOMER_REPORTING_NAME")
+
+    client = MongoClient(host, connect=False)
+    db = client.get_database(dbname)
+
+    return db
 
 
 def read_env(app, config_class):
@@ -51,11 +93,9 @@ def create_app(config=None):
     # setup apps
     from flask_rq import RQ
     from flask_bcrypt import Bcrypt
-    from flask_mongoengine import MongoEngine
     from flask_debugtoolbar import DebugToolbarExtension
 
     DebugToolbarExtension(app)
-    MongoEngine(app)
     Bcrypt(app)
     RQ(app)
 
