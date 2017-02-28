@@ -4,6 +4,7 @@ import logging
 
 from flask import render_template, Blueprint
 
+from project import get_customer_reporting_db
 
 log = logging.getLogger(__name__)
 log.addHandler(logging.StreamHandler())
@@ -26,4 +27,14 @@ def select_service():
 
 @admin_blueprint.route('/<service>/customer_list')
 def customer_list(service):
-    log.info("Selected service: %s" % service)
+    log.info("Customer list requested for service %s" % service)
+
+    db = get_customer_reporting_db()
+    customers = db.customers.find()
+
+    return render_template('admin/customer_list.html', customers=customers)
+
+
+@admin_blueprint.route('/<service>/<customer>')
+def customer_detail(service, customer):
+    log.info("Customer detail requested for (%s, %s) pair" % (service, customer))
