@@ -23,11 +23,7 @@ if __name__ == '__main__':
     manager.add_command("worker", cmd.WorkerCommand())
     manager.add_command("test", cmd.TestCommand())
     manager.add_command("routes", cmd.ListRoutesCommand())
-    manager.add_command("create-user", cmd.CreateUserCommand())
-    manager.add_command("delete-user", cmd.DeleteUserCommand())
     manager.run()
 
 
 __version__ = '.'.join(__version_info__)
-__author__ = "andresilva"
-__email__ = "andreffs18@gmail.com"

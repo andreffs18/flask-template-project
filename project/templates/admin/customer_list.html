@@ -1,0 +1,79 @@
+{% extends "admin/content.html" %}
+
+{% block content %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script>
+        var data = [
+            {% for c in customers %}
+                {
+                    'url':"{{ url_for('admin.customer_detail', service=c.service, customer=c.unbabel_id) }}",
+                    'subdomain': "{{ c.subdomain }}",
+                    'unbabel_client_id': "{{ c.unbabel_client_id }}",
+                    'monthly_reports': "{{ c.monthly_reports }}"
+                },
+            {% endfor %}
+        ]
+    </script>
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.config(['$interpolateProvider', function($interpolateProvider) {
+          $interpolateProvider.startSymbol('{a');
+          $interpolateProvider.endSymbol('a}');
+        }]);
+
+        app.controller('myCtrl', function($scope, $http) {
+            $scope.data = window.data;
+            $scope.searchQuery = ""
+            $scope.search = function(){
+                if ($scope.searchQuery === ""){
+                    $scope.data = window.data
+                }else{
+                    var result = $scope.data;
+                    var param = $scope.searchQuery.split(" ");
+                    for (var i = 0; i < param.length; i++) {
+                        var p = param[i]
+                        result = result.filter(function(x){
+                            return JSON.stringify(x).indexOf(p) != -1;
+                        });
+                    }
+
+                    $scope.data = result
+                }
+            }
+
+            $scope.isArray = angular.isArray;
+        });
+    </script>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h1>Customer List <span class="badge">{a data.length a}</span></h1>
+        <p>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Customers</li>
+            </ol>
+        </p>
+        <p>
+            <b>Search</b>
+            <input type="text" ng-keypress="search()" ng-model="searchQuery" class="form-control" />    
+        </p>
+        <div>
+            <table id="CustomersTable" class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="td_subdomain">Zendesk Subdomain</th>
+                        <th class="td_username">Unbabel Username</th>
+                        <th class="td_monthly_reports">Monthly Reports</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="client in data track by $index">
+                    <tr>
+                        <td><a href="{a client.url a}">{a client.subdomain a}</a></td>
+                        <td>{a client.unbabel_client_id a}</td>
+                        <td>{a client.monthly_reports a}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

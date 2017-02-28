@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+
+{% block body %}
+    <div class="container">
+
+        <h1 class="text-center">Select Service</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <div class="row">
+            <div class="col-lg-6">
+                <img class="center-block" alt="Zendesk"
+                   src="{{ url_for('static', filename='img/zendesk_logo.png') }}" style="width: auto; height: 150px;">
+                <br>
+                <br>
+                <div class="text-center mt-2">
+                    <a href="{{ url_for('admin.customer_list', service='zendesk') }}" class="btn btn-primary">View Zendesk Reports</a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img class="center-block" alt="Salesforce"
+                   src="{{ url_for('static', filename='img/salesforce_logo.png') }}" style="width: auto; height: 150px;">
+                <br>
+                <br>
+                <div class="text-center mt-2">
+                    <a href="#" class="btn btn-primary" disabled>View Salesforce Reports</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

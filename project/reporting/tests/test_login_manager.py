@@ -7,7 +7,7 @@ import base64
 from flask.ext.bcrypt import check_password_hash
 from flask import url_for, request
 import project.user.models as umodels
-import project.home.login_manager as lm
+import project.reporting.login_manager as lm
 
 
 class LoginManagerUtilsTestCase(UtilsTestCase):

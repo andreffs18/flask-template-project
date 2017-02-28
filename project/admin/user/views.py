@@ -6,7 +6,7 @@ from flask import redirect, abort, render_template, request, url_for
 from flask_login import login_required
 from flask_bcrypt import generate_password_hash
 from project.admin.views import admin_blueprint
-from project.home.decorators import admin_required
+from project.reporting.decorators import admin_required
 
 import project.admin.user.forms as auforms
 import project.user.models as umodels
@@ -67,4 +67,4 @@ def user_toggle(user_id=None, action=None):
         flash.warning("User with id \"{}\" does not exist."
                       "".format(user_id))
 
-    return redirect(url_for("admin.home"))
+    return redirect(url_for("admin.reporting"))

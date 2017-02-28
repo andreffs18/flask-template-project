@@ -1,39 +1,40 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/19/16"""
-from flask import redirect, current_app as app, render_template, request, url_for, Blueprint
-from flask_login import login_user, login_required, logout_user, wraps, current_user
-from project.home.decorators import admin_required
+import logging
 
-import project.user.models as umodels
+from flask import render_template, Blueprint
 
-from flask import Blueprint
-from flask_mongoengine import Pagination
+from project import get_customer_reporting_db
 
-from project.api import Resources
+log = logging.getLogger(__name__)
+log.addHandler(logging.StreamHandler())
+log.setLevel(logging.DEBUG)
 
 admin_blueprint = Blueprint('admin', __name__)
 
 
-@admin_blueprint.route('/admin/users/')
-def home_users():
-    return redirect("/admin/#users")
-
-
-@admin_blueprint.route('/admin/')
-@login_required
-@admin_required
+@admin_blueprint.route('/')
 def home():
-    params = request.args.to_dict()
-
-    # user pagination
-    upage = int(params.get('user-page', 1))
-    users = Pagination(umodels.User.objects.all(), upage, 20)
-
-    return render_template('admin/home.html', **{
-        'users': users, 'resources': Resources
-    })
+    log.info("home")
+    return render_template("admin/home.html")
 
 
-# Load remaining endpoints
-from .user.views import *  # load user admin routes  # noqa
+@admin_blueprint.route('/select_service')
+def select_service():
+    log.info("Select service page")
+    return render_template('admin/select_service.html')
+
+
+@admin_blueprint.route('/<service>/customer_list')
+def customer_list(service):
+    log.info("Customer list requested for service %s" % service)
+
+    db = get_customer_reporting_db()
+    customers = db.customers.find()
+
+    return render_template('admin/customer_list.html', customers=customers)
+
+
+@admin_blueprint.route('/<service>/<customer>')
+def customer_detail(service, customer):
+    log.info("Customer detail requested for (%s, %s) pair" % (service, customer))
