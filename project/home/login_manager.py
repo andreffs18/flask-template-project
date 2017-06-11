@@ -16,7 +16,7 @@ def load_user(user_id):
         try:
             user = umodels.User.objects.filter(id=user_id).first()
             return user
-        except (me.DoesNotExist, me.ValidationError) as e:
+        except (me.DoesNotExist, me.ValidationError):
             app.logger.error("User id \"{}\" does not exist".format(user_id))
     return False
 

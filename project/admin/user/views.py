@@ -39,7 +39,7 @@ def user_detail(user_id=None):
     """"""
     try:
         user = umodels.User.objects.get(id=user_id)
-    except (me.DoesNotExist, me.ValidationError) as e:
+    except (me.DoesNotExist, me.ValidationError):
         abort(404)
 
     return render_template('admin/user/detail.html', **{'user': user})

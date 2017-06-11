@@ -1,14 +1,11 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
-from flask import redirect, render_template, request, url_for, Blueprint
-from flask_login import login_user, login_required, logout_user, current_user
-from project.home.decorators import admin_required
-
-
-from flask import Blueprint
+from flask import redirect, render_template, request, Blueprint
+from flask_login import login_required, logout_user, current_user
 from flask_mongoengine import Pagination
 
+from project.home.decorators import admin_required
 from project.api import Resources
 
 admin_blueprint = Blueprint('admin', __name__)
