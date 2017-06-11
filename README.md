@@ -37,14 +37,14 @@ $ mkvirtualenv <venv>
 
 ## Usage
 
-You have a list of available commands in the project manager. To run this project locally, you will use **runserver**. (To know more about all the commands available you can do ```shell % python manage.py``` or consult the wiki page about [Commands](#)).
+You have a list of available commands in the project manager. To run this project locally, you will use **runserver**. (To know more about all the commands available you can do ```$ python manage.py``` or consult the wiki page about [Commands](#)).
 
 ```shell
 [<venv>] $ python manage.py runserver
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
- * Debugger pin code: 281-707-369
+ * Debugger pin code: 123-456-789
 ```
 
 ## Contributing
