@@ -1,12 +1,10 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
-from flask import redirect, current_app as app, render_template, request, url_for, Blueprint
+from flask import redirect, render_template, request, url_for, Blueprint
 from flask_login import login_user, login_required, logout_user, current_user
-from functools import wraps
 from project.home.decorators import admin_required
 
-import project.user.models as umodels
 
 from flask import Blueprint
 from flask_mongoengine import Pagination

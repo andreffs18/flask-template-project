@@ -4,9 +4,6 @@
 
 from project.tests.base import UtilsTestCase
 import base64
-from flask_bcrypt import check_password_hash
-from flask import url_for, request
-import project.user.models as umodels
 import project.home.login_manager as lm
 
 

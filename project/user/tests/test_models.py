@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/22/16"""
 from mongoengine import ValidationError
-from flask import url_for
-from flask_bcrypt import check_password_hash, generate_password_hash
+from flask_bcrypt import check_password_hash
 from flask_login import current_user, login_user
 from project.tests.base import MVCTestCase
 import project.user.models as umodels
