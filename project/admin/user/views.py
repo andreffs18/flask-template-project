@@ -4,7 +4,6 @@
 import mongoengine as me
 from flask import redirect, abort, render_template, request, url_for
 from flask_login import login_required
-from flask_bcrypt import generate_password_hash
 from project.admin.views import admin_blueprint
 from project.home.decorators import admin_required
 

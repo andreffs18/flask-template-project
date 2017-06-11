@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Created by andresilva on 12/31/16"""
 from flask import current_app as app
-from flask_restful import reqparse, abort, Api, Resource
+from flask_restful import reqparse, Resource
 
 
 parser = reqparse.RequestParser()
@@ -10,6 +10,8 @@ parser = reqparse.RequestParser()
 
 class Version(Resource):
     """Version of API"""
+
+    @staticmethod
     def get(self):
         """Shows version of app """
         from manage import __version__

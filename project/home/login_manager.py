@@ -18,7 +18,6 @@ def load_user(user_id):
             return user
         except (me.DoesNotExist, me.ValidationError) as e:
             app.logger.error("User id \"{}\" does not exist".format(user_id))
-            pass
     return False
 
 
@@ -42,9 +41,7 @@ def load_user_from_request(request):
         except (TypeError, binascii.Error):
             # make byte string "Str" again
             auth = auth.decode()
-            pass
         # try if auth is api_key
-
         user = umodels.User.objects.filter(api_key=auth).first()
         if user:
             return user
