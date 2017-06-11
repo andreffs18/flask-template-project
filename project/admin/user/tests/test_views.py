@@ -5,6 +5,7 @@ from flask import url_for
 from project.tests.base import MVCTestCase
 import project.user.models as umodels
 
+
 class UserAdminViewsTestCase(MVCTestCase):
 
     def setUp(self):
@@ -18,8 +19,8 @@ class UserAdminViewsTestCase(MVCTestCase):
 
     def test_user_create_loads(self):
         # Ensure user create admin page loads as expected
-        res  = self.client.get(url_for("admin.user_create"),
-                               follow_redirects=True)
+        res = self.client.get(url_for("admin.user_create"),
+                              follow_redirects=True)
         self.assertEqual(res.status_code, 200)
         # test: create user with complete form data
         data = dict(username="myusername", password="mypassword",
@@ -27,7 +28,7 @@ class UserAdminViewsTestCase(MVCTestCase):
         res = self.client.post(url_for("admin.user_create"), data=data,
                                follow_redirects=True)
         user = umodels.User.objects.filter(username="myusername").first()
-        url = url_for("admin.user_detail", user_id=unicode(user))
+        url = url_for("admin.user_detail", user_id=str(user))
         msg = ("<span>User user <a href=\"{}\">{}</a> was successfully "
                "created.</span>".format(url, str(user)))
         self.assertIn(msg, res.data)
@@ -53,7 +54,7 @@ class UserAdminViewsTestCase(MVCTestCase):
     def test_user_detail_view(self):
         """Ensure user detail page is loading"""
         res = self.client.get(url_for("admin.user_detail",
-                                      user_id=unicode(self.me)),
+                                      user_id=str(self.me)),
                               follow_redirects=True)
         self.assertEqual(res.status_code, 200)
         # test: invalid user id
@@ -66,7 +67,7 @@ class UserAdminViewsTestCase(MVCTestCase):
         # test: toggle id_admin flag
         self.assertTrue(self.me.is_admin)
         res = self.client.get(
-            url_for("admin.user_toggle", user_id=unicode(self.me),
+            url_for("admin.user_toggle", user_id=str(self.me),
                     action="is_admin"),
             follow_redirects=True)
         self.me.reload()
@@ -78,7 +79,7 @@ class UserAdminViewsTestCase(MVCTestCase):
         self.me.save()
         # test: remove user
         res = self.client.get(
-            url_for("admin.user_toggle", user_id=unicode(self.me),
+            url_for("admin.user_toggle", user_id=str(self.me),
                     action="remove"), follow_redirects=True)
         self.me.reload()
         msg = "User \"{}\" was successfully deleted!".format(str(self.me))
@@ -90,7 +91,7 @@ class UserAdminViewsTestCase(MVCTestCase):
         self.me.save()
         # test: invalid user_id
         res = self.client.get(
-            url_for("admin.user_toggle", user_id=unicode("_id"), action="?"),
+            url_for("admin.user_toggle", user_id=str("_id"), action="?"),
             follow_redirects=True)
         msg = "User with id \"{}\" does not exist.".format("_id")
         self.assertIn(msg, res.data)

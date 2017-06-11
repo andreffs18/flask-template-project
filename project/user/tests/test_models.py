@@ -3,8 +3,8 @@
 """ Created by andresilva on 2/22/16"""
 from mongoengine import ValidationError
 from flask import url_for
-from flask.ext.bcrypt import check_password_hash
-from flask.ext.login import current_user, login_user
+from flask_bcrypt import check_password_hash, generate_password_hash
+from flask_login import current_user, login_user
 from project.tests.base import MVCTestCase
 import project.user.models as umodels
 
@@ -16,11 +16,9 @@ class UserModelTestCase(MVCTestCase):
         self.user = self.create_user(username="username", password="password")
 
     def test_user_representation(self):
-        """Ensure user object __repr__, __str__ and __unicode__ are
-        returning correct values"""
+        """Ensure user object __repr__, __str__ are returning correct values"""
         self.assertEqual(str(self.user), self.user.username)
         self.assertEqual(repr(self.user), u"<User: {}>".format(str(self.user)))
-        self.assertEqual(unicode(self.user), unicode(self.user.id))
 
     def test_user_creation_method_and_model_fields(self):
         """Ensure when creating a User Object that the method used to create
@@ -28,7 +26,7 @@ class UserModelTestCase(MVCTestCase):
         user = umodels.User.create(username="my_username",
                                    password="my_password")
         self.assertEqual(user.username, "my_username")
-        self.assertEqual(user.password, "my_password")
+        self.assertTrue(check_password_hash(user.password, "my_password"))
 
     def test_get_user(self):
         """Ensure get_user classmethod is returning always what we expect"""

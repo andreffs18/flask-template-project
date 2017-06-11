@@ -1,7 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/21/16"""
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 import mongoengine as me
 import wtforms as wtf
 import wtforms.validators as v
@@ -9,12 +9,12 @@ import wtforms.validators as v
 import project.user.models as umodels
 
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     username = wtf.StringField('Username', validators=[v.DataRequired()])
     password = wtf.PasswordField('Password', validators=[v.DataRequired()])
 
 
-class RegisterForm(Form):
+class RegisterForm(FlaskForm):
     username = wtf.StringField('Username', validators=[v.DataRequired()])
     password = wtf.PasswordField('Password', validators=[v.DataRequired()])
     confirm_password = wtf.PasswordField('Confirm Password', validators=[

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/22/16"""
 from flask import current_app as app
-from flask.ext.bcrypt import generate_password_hash
+from flask_bcrypt import generate_password_hash
 import project.user.models as umodels
 
 

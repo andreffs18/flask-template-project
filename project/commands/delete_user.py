@@ -28,5 +28,5 @@ class DeleteUserCommand(Command):
             user.save()
             app.logger.info("User \"{}\" was successfully deleted!".format(
                 self.username))
-        except Exception, e:
+        except Exception as e:
             app.logger.error("Something went wrong :s. {}".format(e))

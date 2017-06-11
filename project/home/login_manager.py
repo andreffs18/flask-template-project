@@ -3,6 +3,7 @@
 """Created by andresilva on 7/8/16"""
 
 import base64
+import binascii
 import mongoengine as me
 from flask import current_app as app
 from flask_bcrypt import check_password_hash
@@ -32,12 +33,18 @@ def load_user_from_request(request):
     # next, try to login using Basic Auth first, try apikey and then user:pass
     auth = request.headers.get('Authorization')
     if auth:
+        # get bytes string instead of str representation
         auth = auth.replace('Basic ', '', 1)
         try:
+            auth = bytes(auth, 'utf8')
             auth = base64.b64decode(auth)
-        except TypeError:
+            auth = auth.decode()
+        except (TypeError, binascii.Error):
+            # make byte string "Str" again
+            auth = auth.decode()
             pass
         # try if auth is api_key
+
         user = umodels.User.objects.filter(api_key=auth).first()
         if user:
             return user

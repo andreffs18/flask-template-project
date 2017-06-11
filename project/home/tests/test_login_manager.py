@@ -4,7 +4,7 @@
 
 from project.tests.base import UtilsTestCase
 import base64
-from flask.ext.bcrypt import check_password_hash
+from flask_bcrypt import check_password_hash
 from flask import url_for, request
 import project.user.models as umodels
 import project.home.login_manager as lm
@@ -24,7 +24,7 @@ class LoginManagerUtilsTestCase(UtilsTestCase):
         self.assertFalse(lm.load_user(""))
         self.assertFalse(lm.load_user("?"))
         # test: valid user id
-        self.assertEqual(self.user, lm.load_user(unicode(self.user)))
+        self.assertEqual(self.user, lm.load_user(self.user.id))
 
     def test_load_user_from_request(self):
         """Ensure load_user_from_request is working fine either for
@@ -43,23 +43,23 @@ class LoginManagerUtilsTestCase(UtilsTestCase):
         self.assertEqual(response, self.user)
         # test: invalid auth Basic String
         reqctx = self.app.test_request_context(
-            headers={'Authorization': "lol?"})
+            headers={'Authorization': b"lol?"})
         self.assertIsNone(lm.load_user_from_request(reqctx.request))
         # test: valid auth Basic but invalid base64 user:password
         reqctx = self.app.test_request_context(
-            headers={'Authorization': "Basic lol?"})
+            headers={'Authorization': b"Basic lol?"})
         self.assertIsNone(lm.load_user_from_request(reqctx.request))
         # test: valid auth Basic and valid base64 api_key
-        api_key = base64.b64encode(self.user.api_key)
+        api_key = base64.b64encode(bytes(self.user.api_key, 'utf8'))
         reqctx = self.app.test_request_context(
-            headers={'Authorization': "Basic {}".format(api_key)})
+            headers={'Authorization': b"Basic " + api_key})
         response = lm.load_user_from_request(reqctx.request)
         self.assertIsNotNone(response)
         self.assertEqual(response, self.user)
         # test: valid auth Basic and valid base64 userpassword
-        userpass = base64.b64encode("username:password")
+        userpass = base64.b64encode(b"username:password")
         reqctx = self.app.test_request_context(
-            headers={'Authorization': "Basic {}".format(userpass)})
+            headers={'Authorization': b"Basic " + userpass})
         response = lm.load_user_from_request(reqctx.request)
         self.assertIsNotNone(response)
         self.assertEqual(response, self.user)

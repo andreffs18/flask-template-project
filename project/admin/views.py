@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
 from flask import redirect, current_app as app, render_template, request, url_for, Blueprint
-from flask_login import login_user, login_required, logout_user, wraps, current_user
+from flask_login import login_user, login_required, logout_user, current_user
+from functools import wraps
 from project.home.decorators import admin_required
 
 import project.user.models as umodels

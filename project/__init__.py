@@ -13,7 +13,7 @@ def read_env(app, config_class):
     env = DotEnv()
     env.init_app(app)
     # get all new .env variable and add them to os.environ dict
-    os.environ.update(map(lambda x: (x[0], str(x[1])), app.config.iteritems()))
+    os.environ.update(map(lambda x: (x[0], str(x[1])), app.config.items()))
     # get correct APP_ENV and right variable
     if config_class is None:
         from config import config as c
@@ -73,7 +73,7 @@ def create_app(config=None):
     app.register_blueprint(user_blueprint)
 
     # register api endpoints
-    from api import Resources, API_VERSION
+    from .api import Resources, API_VERSION
     for resource, url in Resources:
         _endpoint = ".".join(API_VERSION.format(url).split("/")[1:-1])
         api.add_resource(resource, API_VERSION.format(url), endpoint=_endpoint)

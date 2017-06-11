@@ -10,6 +10,7 @@ API_VERSION = "/api/v1{}"
 
 class Home(Resource):
     """Home directory for API v1. See all available endoints"""
+
     def get(self):
         """Shows scheme of API"""
         return dict((API_VERSION.format(endpoint), resource.__doc__)

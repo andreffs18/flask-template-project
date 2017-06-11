@@ -26,7 +26,7 @@ def user_create(user_id=None):
             user.is_admin = form.is_admin.data
             user.save()
 
-            url = url_for("admin.user_detail", user_id=unicode(user))
+            url = url_for("admin.user_detail", user_id=str(user))
             msg = ("<span>User user <a href=\"{}\">{}</a> was successfully "
                    "created.</span>".format(url, str(user)))
             flash.success(msg)

@@ -13,7 +13,7 @@ from flask_bcrypt import generate_password_hash
 class User(UserMixin, me.Document):
     """"""
     username = me.StringField(required=True, unique=True)
-    password = me.StringField(required=True)
+    password = me.BinaryField(required=True)
     api_key = me.StringField(required=False)
     is_admin = me.BooleanField(default=False)
 
@@ -24,9 +24,6 @@ class User(UserMixin, me.Document):
 
     def __repr__(self):
         return u"<User: {}>".format(str(self))
-
-    def __unicode__(self):
-        return unicode(self.id)
 
     meta = {
         # 'allow_inheritance': True,
@@ -89,8 +86,10 @@ class User(UserMixin, me.Document):
     def create(cls, username, password, generate_api_key=True,
                *args, **kwargs):
         """Aux method to create user MongoObject"""
-        kwargs.update(dict(username=username))
-
+        kwargs.update(dict(
+            username=username,
+            password=password
+        ))
         user = User(**kwargs)
         user.reset_password(new_password=password)
         user.save()
