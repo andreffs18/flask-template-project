@@ -1,3 +1,3 @@
 $(document).ready(function(){
-	console.log("We have lift off!");
+	Console.log("We have lift off!");
 });
