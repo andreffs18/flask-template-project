@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/dc41f3a0b9a1474caf15043e270ef497)](https://www.codacy.com/app/andreffs18/flask-template-project?utm_source=github.com&utm_medium=referral&utm_content=andreffs18/flask-template-project&utm_campaign=Badge_Coverage)
 
 
-This is ready-to-go, empty, bootstrapped, **Flask** project with some neat features like, Blueprint Structure, RESTfull api, LoginManager, Tests and Basic Admin CMS. 
+This is ready-to-go, empty, bootstrapped, **Flask** project with some neat features like, Python3.6, Blueprint Structure, RESTfull api, LoginManager, Tests and Basic Admin CMS. 
 
 ## Table of contents
 
@@ -37,14 +37,14 @@ $ mkvirtualenv <venv>
 
 ## Usage
 
-You have a list of available commands in the project manager. To run this project locally, you will use **runserver**. (To know more about all the commands available you can do ```shell % python manage.py``` or consult the wiki page about [Commands](#)).
+You have a list of available commands in the project manager. To run this project locally, you will use **runserver**. (To know more about all the commands available you can do ```$ python manage.py``` or consult the wiki page about [Commands](#)).
 
 ```shell
 [<venv>] $ python manage.py runserver
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
- * Debugger pin code: 281-707-369
+ * Debugger pin code: 123-456-789
 ```
 
 ## Contributing
