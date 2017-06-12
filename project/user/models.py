@@ -23,7 +23,7 @@ class User(UserMixin, me.Document):
         return "{}".format(self.username)
 
     def __repr__(self):
-        return u"<User: {}>".format(str(self))
+        return "<User: {}>".format(str(self))
 
     meta = {
         # 'allow_inheritance': True,
@@ -57,7 +57,7 @@ class User(UserMixin, me.Document):
 
     def _generate_api_key(self, size=64):
         """for given size, generate random string with all ascii and digits"""
-        return u''.join(random.choice(string.ascii_lowercase + string.digits)
+        return ''.join(random.choice(string.ascii_lowercase + string.digits)
                         for _ in range(size))
 
     def reset_password(self, new_password="password"):

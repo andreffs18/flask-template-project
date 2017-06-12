@@ -17,7 +17,7 @@ class UserModelTestCase(MVCTestCase):
     def test_user_representation(self):
         """Ensure user object __repr__, __str__ are returning correct values"""
         self.assertEqual(str(self.user), self.user.username)
-        self.assertEqual(repr(self.user), u"<User: {}>".format(str(self.user)))
+        self.assertEqual(repr(self.user), "<User: {}>".format(str(self.user)))
 
     def test_user_creation_method_and_model_fields(self):
         """Ensure when creating a User Object that the method used to create

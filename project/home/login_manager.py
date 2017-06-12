@@ -12,7 +12,7 @@ import project.user.models as umodels
 
 
 def load_user(user_id):
-    if user_id not in [u'None', None]:
+    if user_id not in ['None', None]:
         try:
             user = umodels.User.objects.filter(id=user_id).first()
             return user

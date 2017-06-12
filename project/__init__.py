@@ -13,7 +13,7 @@ def read_env(app, config_class):
     env = DotEnv()
     env.init_app(app)
     # get all new .env variable and add them to os.environ dict
-    os.environ.update(map(lambda x: (x[0], str(x[1])), app.config.items()))
+    os.environ.update([(x[0], str(x[1])) for x in list(app.config.items())])
     # get correct APP_ENV and right variable
     if config_class is None:
         from config import config as c
