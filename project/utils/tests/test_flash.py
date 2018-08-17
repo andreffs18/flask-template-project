@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/22/16"""
 from flask import get_flashed_messages
 
 from project.tests.base import UtilsTestCase

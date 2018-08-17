@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/22/16"""
 from project import create_app
 from flask_testing import TestCase
 import project.tests.utils as tu

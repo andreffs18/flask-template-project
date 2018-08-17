@@ -1,29 +1,26 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/21/16"""
 from flask_wtf import FlaskForm
-import mongoengine as me
-import wtforms as wtf
-import wtforms.validators as v
+from wtforms.fields import StringField, PasswordField
+from wtforms.validators import DataRequired, EqualTo, ValidationError
 
-import project.user.models as umodels
+from project.user.finders.user_finder import UserFinder
 
 
 class LoginForm(FlaskForm):
-    username = wtf.StringField('Username', validators=[v.DataRequired()])
-    password = wtf.PasswordField('Password', validators=[v.DataRequired()])
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
 
 
 class RegisterForm(FlaskForm):
-    username = wtf.StringField('Username', validators=[v.DataRequired()])
-    password = wtf.PasswordField('Password', validators=[v.DataRequired()])
-    confirm_password = wtf.PasswordField('Confirm Password', validators=[v.DataRequired(), v.EqualTo('password')])
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
 
     def validate_username(form, field):
         username = field.data
-        try:
-            umodels.User.objects.get(username=username)
-            raise v.ValidationError("Username \"{}\" already exists.".format(username))
-        except me.DoesNotExist:
-            pass
+
+        user = UserFinder.by_username(username)
+        if not user:
+            raise ValidationError("Username \"{}\" already exists. ".format(username))
         return username

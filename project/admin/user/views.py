@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/19/16"""
 import mongoengine as me
 from flask import redirect, abort, render_template, request, url_for
 from flask_login import login_required
@@ -11,6 +10,11 @@ import project.admin.user.forms as auforms
 import project.user.models as umodels
 import project.utils.flash as flash
 
+from project.user.finders.user_finder import UserFinder
+
+from project.user.services.create_user_service import CreateUserService
+from project.user.services.delete_user_service import DeleteUserService
+
 
 @admin_blueprint.route('/admin/users/create/', methods=['GET', 'POST'])
 @login_required
@@ -20,11 +24,7 @@ def user_create(user_id=None):
     form = auforms.CreateForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            user = umodels.User.create(form.username.data, form.password.data)
-            # setting user admin variable
-            user.is_admin = form.is_admin.data
-            user.save()
-
+            user = CreateUserService(form.username.data, form.password.data, is_admin=form.is_admin.data).call()
             url = url_for("admin.user_detail", user_id=str(user))
             msg = "<span>User user <a href=\"{}\">{}</a> was successfully created.</span>".format(url, str(user))
             flash.success(msg)
@@ -48,9 +48,10 @@ def user_detail(user_id=None):
 @admin_required
 def user_toggle(user_id=None, action=None):
     try:
-        user = umodels.User.get_user(user_id)
+
+        user = UserFinder.by_id(user_id)
         if action == "remove":
-            user.delete()
+            DeleteUserService(user).call()
             flash.success("User \"{}\" was successfully deleted!".format(str(user)))
         elif action == "is_admin":
             user.is_admin = not user.is_admin

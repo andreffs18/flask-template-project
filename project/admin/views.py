@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/19/16"""
 from flask import redirect, render_template, request, Blueprint
 from flask_login import login_required
 from flask_mongoengine import Pagination
