@@ -30,4 +30,4 @@ Some things that will increase the chance that your pull request is accepted:
 
 * Write tests.
 * Follow [PEP8](https://www.python.org/dev/peps/pep-0008/) style guide.
-* Write a good commit message.
+* Write a [good commit message](https://chris.beams.io/posts/git-commit/).
