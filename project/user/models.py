@@ -1,8 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/19/16"""
-import random
-import string
+import secrets
 import mongoengine as me
 from werkzeug.local import LocalProxy
 
@@ -55,11 +54,11 @@ class User(UserMixin, me.Document):
             return None
         return super(User, self).delete()
 
-    def _generate_api_key(self, size=64):
+    def _generate_api_key(self, size=32):
         """
-        for given size, generate random string with all ascii and digits
+        for given byte size, generate random string with all ascii and digits
         """
-        return ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(size))
+        return secrets.token_hex(size)
 
     def reset_password(self, new_password="password"):
         self.password = generate_password_hash(new_password)
