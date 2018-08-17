@@ -2,20 +2,20 @@
 
 We love pull requests from everyone. To participate in this project you just need to follow a couple of steps: 
 
-##### Fork, then clone the repo:
+#### Fork, then clone the repo:
     
     $ git clone git@github.com:<your-username>/flask-template-project.git
 
-##### Set up your machine:
+#### Set up your machine:
 
     $ mkvirtualenv env
     $ pip install -r requirements.txt
 
-##### Make sure the tests pass:
+#### Make sure the tests pass:
 
     $ python manage.py test
 
-##### Implement your changes:
+#### Implement your changes:
 
 * Make your change. 
 * Add tests for your change and make the tests pass.
