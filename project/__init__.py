@@ -6,9 +6,10 @@ from flask import Flask
 
 
 def read_env(app, config_class):
-    """config environment variables and override with .env declared ones.
-    use configuration given by environment variable APP_ENV if "config_class"
-    is not given"""
+    """
+    config environment variables and override with .env declared ones. use configuration given by environment
+    variable APP_ENV if "config_class" is not given
+    """
     from flask_dotenv import DotEnv
     env = DotEnv()
     env.init_app(app)
@@ -30,13 +31,11 @@ def create_app(config=None):
     # define logging patterns
     import logging  # %(pathname)
     if app.config.get("TESTING"):
-        log_format = ("[%(asctime)s] %(funcName)s:%(lineno)d "
-                      "%(levelname)s - %(message)s")
+        log_format = "[%(asctime)s] %(funcName)s:%(lineno)d %(levelname)s - %(message)s"
         log_level = logging.DEBUG
 
     else:
-        log_format = ("[%(asctime)s] {%(filename)s#%(funcName)s:%(lineno)d} "
-                      "%(levelname)s - %(message)s")
+        log_format = "[%(asctime)s] {%(filename)s#%(funcName)s:%(lineno)d} %(levelname)s - %(message)s"
         log_level = logging.INFO
 
     formatter = logging.Formatter(log_format)

@@ -12,9 +12,15 @@ class HTTPResponseUtilsTestCase(UtilsTestCase):
         self.message = "Testing this message"
 
     def test_not_ok_response(self):
-        """Ensure NotOkResponse is working properly"""
+        """
+        Ensure NotOkResponse is working properly
+        """
         res = NotOkResponse({"message": self.message})
+        self.assert400(res)
 
     def test_ok_response(self):
-        """Ensure OkResponse is working properly"""
+        """
+        Ensure OkResponse is working properly
+        """
         res = OkResponse({"message": self.message})
+        self.assert200(res)

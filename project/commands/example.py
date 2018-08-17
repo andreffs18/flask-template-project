@@ -17,7 +17,6 @@ class HelloCommand(Command):
         ]
 
     def run(self, **kwargs):
-        app.logger.info("Running {} with arguments {}".format(
-            self.__class__.__name__, kwargs))
+        app.logger.info("Running {} with arguments {}".format(self.__class__.__name__, kwargs))
         self.__dict__.update(**kwargs)  # update self's with kwargs
         print("hello", self.name)

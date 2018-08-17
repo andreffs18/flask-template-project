@@ -6,8 +6,7 @@ from flask import Response
 
 
 def MyResponse(response, status, mimetype="application/json", **kwargs):
-    return Response(json.dumps(response, default=json_util.default),
-                    status=status, mimetype="application/json", **kwargs)
+    return Response(json.dumps(response, default=json_util.default), status=status, mimetype=mimetype, **kwargs)
 
 
 def OkResponse(response):

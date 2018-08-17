@@ -3,8 +3,7 @@
 """ Created by andresilva on 2/19/16"""
 
 from flask import redirect, render_template, request, url_for, Blueprint
-from flask_login import (login_user, login_required, logout_user,
-                         current_user)
+from flask_login import login_user, login_required, logout_user, current_user
 from flask_bcrypt import check_password_hash
 
 import project.user.forms as uforms
@@ -37,8 +36,7 @@ def login():
     form = uforms.LoginForm(request.form)
     if request.method == 'POST':
         if form.validate_on_submit():
-            user = umodels.User.objects.filter(
-                username=form.username.data).first()
+            user = umodels.User.objects.filter(username=form.username.data).first()
             if user and check_password_hash(user.password, form.password.data):
                 login_user(user)
                 flash.info('Welcome {}.'.format(str(user)))

@@ -8,8 +8,9 @@ ALERT_LINK_CLASS = ['alert-link']
 
 
 def flash(message, category='default'):
-    """For the given message, if html is present, add bootstrap .alert-link
-    class to all links"""
+    """
+    For the given message, if html is present, add bootstrap .alert-link class to all links
+    """
     if message.startswith('<p>') and message.endswith('</p>'):
         message = BeautifulSoup(message, "lxml")
         for a in message.find_all("a"):

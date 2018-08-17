@@ -12,8 +12,7 @@ class Home(Resource):
     @staticmethod
     def get():
         """Shows scheme of API"""
-        return dict((API_VERSION.format(endpoint), resource.__doc__)
-                    for resource, endpoint in Resources), 200
+        return dict((API_VERSION.format(endpoint), resource.__doc__) for resource, endpoint in Resources), 200
 
 
 Resources = [
@@ -22,7 +21,4 @@ Resources = [
     (Version, "/version/"),
 ]
 
-
-__author__ = "andresilva"
-__email__ = "andre@unbabel.com"
 __all__ = ["Resources"]

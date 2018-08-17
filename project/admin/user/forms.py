@@ -16,8 +16,7 @@ class CreateForm(FlaskForm):
         username = field.data
         try:
             umodels.User.objects.get(username=username)
-            raise v.ValidationError("Username \"{}\" already exists. "
-                                    "".format(username))
+            raise v.ValidationError("Username \"{}\" already exists. ".format(username))
         except me.DoesNotExist:
             pass
         return username

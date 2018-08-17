@@ -18,14 +18,12 @@ class DeleteUserCommand(Command):
         ]
 
     def run(self, **kwargs):
-        app.logger.info("Running {} with arguments {}".format(
-            self.__class__.__name__, kwargs))
+        app.logger.info("Running {} with arguments {}".format(self.__class__.__name__, kwargs))
         self.__dict__.update(**kwargs)  # update self's with kwargs
         try:
             user = User._objects.get(username=self.username)
             user.delete(force=True)
             user.save()
-            app.logger.info("User \"{}\" was successfully deleted!".format(
-                self.username))
+            app.logger.info("User \"{}\" was successfully deleted!".format(self.username))
         except Exception as e:
             app.logger.error("Something went wrong :s. {}".format(e))
