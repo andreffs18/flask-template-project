@@ -48,7 +48,7 @@ You have a list of available commands in the project manager. To run this projec
 ```
 
 
-### Flake8 configuration
+#### Flake8 configuration
 Some custom properties were set when configuring Flake8 to validate if the codebase is PEP8 complain.
 
 A new configuration file **"flake8"** was created on `~/.config/` folder.
@@ -62,27 +62,29 @@ ignore = E704  # Multiple statements on one line
 
 ## Contributing
 
-We deeply appreciate if you want to contribute to this project. To do so, please follow [these](#) guidelines.
+We deeply appreciate if you want to contribute to this project. To do so, please follow [these](contributing.md) guidelines.
 
 
 ## Credits
 
-This project could not have been done without the help of everyone @ **the internet**. :satisfied:
-- [Base tutorial (~5hours)](https://www.youtube.com/watch?v=WfpFUmV1d0w&list=PLLjmbh6XPGK4ISY747FUHXEl9lBxre4mM&feature=share)
-- [Create a flask project by example](https://realpython.com/blog/python/flask-by-example-part-1-project-setup/)
+This project could not have been done without the help of everyone involved. A **HUGE** thanks to [@johnsardine](https://github.com/johnsardine) :satisfied:
 
-If you have sugestions/bugs/requests feel free to PM me @andreffs18
+Some resources that you can use to understand better this project:
+- [Discover Flask, by Michael Herman](https://www.youtube.com/watch?v=WfpFUmV1d0w&list=PLLjmbh6XPGK4ISY747FUHXEl9lBxre4mM&feature=share)
+- [Flask by example - Project Setup](https://realpython.com/blog/python/flask-by-example-part-1-project-setup/)
+- [Microservices with Python and Flask - PyCon 2017](https://www.youtube.com/watch?v=nrzLdMWTRMM)
+
+If you have suggestions/bugs/requests feel free to send me a message.
 
 
 ## License
 
-[MIT License Copyright (c)](/LICENCE.md) 
-2017 andreffs18
+[MIT License Copyright (c)](/LICENCE.md) 2018 andreffs18
 
 
 ## Wiki and FAQ's
 
-We try to keep our wiki up-to-date as best as we can, so if you have any questions/problems please use it! If you don't find any solution, create an issue and we will look @ it as soon as we can. :+1:
+We try to keep our wiki up-to-date as best as we can, so if you have any questions, please use it! If you don't find anything regarding what you are looking for, then create an issue and we will look at it as soon as possible. :+1:
 
 
 
