@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask_script import Manager
 from flask import render_template
-from project import create_app, __version_info__
+from project import create_app
 
 # in case we run the test command choose the "TestConfig"
 import sys
@@ -27,6 +27,6 @@ if __name__ == '__main__':
     manager.run()
 
 
-__version__ = '.'.join(__version_info__)
-__author__ = "andresilva"
+__version__ = '1.0.1'
+__author__ = "Andre Silva"
 __email__ = "andreffs18@gmail.com"

@@ -92,7 +92,3 @@ def create_app(config=None):
     login_manager.needs_refresh_message_category = 'info'
 
     return app
-
-__version_info__ = ('1', '0', '0')
-__author__ = "andresilva"
-__email__ = "andre@unbabel.com"
