@@ -1,7 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 7/8/16"""
-
 from project.tests.base import UtilsTestCase
 import base64
 import project.home.login_manager as lm

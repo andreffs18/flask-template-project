@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 6/11/16"""
 from flask import flash as FLASH
 from bs4 import BeautifulSoup
 

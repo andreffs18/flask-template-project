@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 2/19/16"""
 from flask_script import Manager
 from flask import render_template
 from project import create_app, __version_info__

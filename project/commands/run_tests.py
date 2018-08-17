@@ -1,7 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 6/15/16"""
-
 import unittest
 
 from flask import current_app as app

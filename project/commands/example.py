@@ -1,7 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 6/15/16"""
-
 from flask import current_app as app
 
 from flask_script import Command, Option

@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 7/25/16"""
 from flask_wtf import FlaskForm
 import wtforms as wtf
 import wtforms.validators as v

@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 6/15/16"""
 import urllib.parse
 from flask import url_for, current_app as app
 

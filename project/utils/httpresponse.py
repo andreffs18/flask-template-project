@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 6/11/16"""
 import json
 from bson import json_util
 from flask import Response

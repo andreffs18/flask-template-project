@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 12/31/16"""
 from flask import current_app as app
 from flask_restful import reqparse, Resource
 

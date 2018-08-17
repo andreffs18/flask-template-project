@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 12/31/16"""
 from flask_restful import Resource
 from .version import Version
 
