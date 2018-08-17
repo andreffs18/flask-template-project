@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 12/31/16"""
 from flask_restful import Resource
 from .version import Version
 
@@ -13,8 +12,7 @@ class Home(Resource):
     @staticmethod
     def get():
         """Shows scheme of API"""
-        return dict((API_VERSION.format(endpoint), resource.__doc__)
-                    for resource, endpoint in Resources), 200
+        return dict((API_VERSION.format(endpoint), resource.__doc__) for resource, endpoint in Resources), 200
 
 
 Resources = [
@@ -23,7 +21,4 @@ Resources = [
     (Version, "/version/"),
 ]
 
-
-__author__ = "andresilva"
-__email__ = "andre@unbabel.com"
 __all__ = ["Resources"]

@@ -26,8 +26,7 @@ def user_create(user_id=None):
             user.save()
 
             url = url_for("admin.user_detail", user_id=str(user))
-            msg = ("<span>User user <a href=\"{}\">{}</a> was successfully "
-                   "created.</span>".format(url, str(user)))
+            msg = "<span>User user <a href=\"{}\">{}</a> was successfully created.</span>".format(url, str(user))
             flash.success(msg)
     return render_template('admin/user/create.html', form=form)
 
@@ -39,14 +38,12 @@ def user_detail(user_id=None):
     """"""
     try:
         user = umodels.User.objects.get(id=user_id)
+        return render_template('admin/user/detail.html', **{'user': user})
     except (me.DoesNotExist, me.ValidationError):
         abort(404)
 
-    return render_template('admin/user/detail.html', **{'user': user})
 
-
-@admin_blueprint.route('/admin/user/<user_id>/toggle/<action>',
-                       methods=['GET'])
+@admin_blueprint.route('/admin/user/<user_id>/toggle/<action>', methods=['GET'])
 @login_required
 @admin_required
 def user_toggle(user_id=None, action=None):
@@ -54,16 +51,13 @@ def user_toggle(user_id=None, action=None):
         user = umodels.User.get_user(user_id)
         if action == "remove":
             user.delete()
-            flash.success("User \"{}\" was successfully deleted!"
-                          "".format(str(user)))
+            flash.success("User \"{}\" was successfully deleted!".format(str(user)))
         elif action == "is_admin":
             user.is_admin = not user.is_admin
             user.save()
-            flash.success("User \"{}\" field \"{}\" was successfully "
-                          "updated to \"{}\"!".format(str(user), action,
-                                                      user.is_admin))
+            flash.success("User \"{}\" field \"{}\" was successfully updated to \"{}\"!"
+                          "".format(str(user), action, user.is_admin))
     except (me.DoesNotExist, me.ValidationError) as e:
-        flash.warning("User with id \"{}\" does not exist."
-                      "".format(user_id))
+        flash.warning("User with id \"{}\" does not exist.".format(user_id))
 
     return redirect(url_for("admin.home"))

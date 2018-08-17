@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 7/25/16"""
 from flask_wtf import FlaskForm
 import wtforms as wtf
 import wtforms.validators as v
@@ -17,8 +16,7 @@ class CreateForm(FlaskForm):
         username = field.data
         try:
             umodels.User.objects.get(username=username)
-            raise v.ValidationError("Username \"{}\" already exists. "
-                                    "".format(username))
+            raise v.ValidationError("Username \"{}\" already exists. ".format(username))
         except me.DoesNotExist:
             pass
         return username

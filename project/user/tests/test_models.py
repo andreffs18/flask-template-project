@@ -15,20 +15,24 @@ class UserModelTestCase(MVCTestCase):
         self.user = self.create_user(username="username", password="password")
 
     def test_user_representation(self):
-        """Ensure user object __repr__, __str__ are returning correct values"""
+        """
+        Ensure user object __repr__, __str__ are returning correct values
+        """
         self.assertEqual(str(self.user), self.user.username)
         self.assertEqual(repr(self.user), "<User: {}>".format(str(self.user)))
 
     def test_user_creation_method_and_model_fields(self):
-        """Ensure when creating a User Object that the method used to create
-        the user assigns all fields correctly"""
-        user = umodels.User.create(username="my_username",
-                                   password="my_password")
+        """
+        Ensure when creating a User Object that the method used to create the user assigns all fields correctly
+        """
+        user = umodels.User.create(username="my_username", password="my_password")
         self.assertEqual(user.username, "my_username")
         self.assertTrue(check_password_hash(user.password, "my_password"))
 
     def test_get_user(self):
-        """Ensure get_user classmethod is returning always what we expect"""
+        """
+        Ensure get_user classmethod is returning always what we expect
+        """
         # test: invalid input
         self.assertRaises(ValidationError, umodels.User.get_user, None)
         # test: UserMixin (from flask.login) object
@@ -41,8 +45,9 @@ class UserModelTestCase(MVCTestCase):
         self.assertEqual(self.user, umodels.User.get_user(self.user.id))
 
     def test_reset_password(self):
-        """Ensure the reset password method is actually updating the password
-        to the given one"""
+        """
+        Ensure the reset password method is actually updating the password to the given one
+        """
         self.assertTrue(check_password_hash(self.user.password, "password"))
         self.user.reset_password("newpassword")
         self.user.save()
@@ -51,8 +56,10 @@ class UserModelTestCase(MVCTestCase):
         self.assertTrue(check_password_hash(self.user.password, "newpassword"))
 
     def test_delete_user(self):
-        """Ensure delete method is not actually deleting the editor, but only
-        deletes it from the database if the flag "force" is given"""
+        """
+        Ensure delete method is not actually deleting the editor, but only deletes it from the database if the flag
+        "force" is given
+        """
         self.assertEqual(1, umodels.User.objects.count())
         self.user.delete()
         self.assertEqual(0, umodels.User.objects.count())

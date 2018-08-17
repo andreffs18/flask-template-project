@@ -17,15 +17,13 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     username = wtf.StringField('Username', validators=[v.DataRequired()])
     password = wtf.PasswordField('Password', validators=[v.DataRequired()])
-    confirm_password = wtf.PasswordField('Confirm Password', validators=[
-        v.DataRequired(), v.EqualTo('password')])
+    confirm_password = wtf.PasswordField('Confirm Password', validators=[v.DataRequired(), v.EqualTo('password')])
 
     def validate_username(form, field):
         username = field.data
         try:
             umodels.User.objects.get(username=username)
-            raise v.ValidationError("Username \"{}\" already exists. "
-                                    "".format(username))
+            raise v.ValidationError("Username \"{}\" already exists.".format(username))
         except me.DoesNotExist:
             pass
         return username

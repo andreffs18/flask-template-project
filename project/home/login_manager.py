@@ -1,7 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 7/8/16"""
-
 import base64
 import binascii
 import mongoengine as me
