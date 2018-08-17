@@ -53,7 +53,7 @@ Some custom properties were set when configuring Flake8 to validate if the codeb
 
 A new configuration file **"flake8"** was created on `~/.config/` folder.
 
-> You can find more following Flake8's documentation: http://flake8.pycqa.org/en/latest/user/configuration.html#user-configuration
+> You can find more following [Flake8's documentation](http://flake8.pycqa.org/en/latest/user/configuration.html#user-configuration).
 ```
 [flake8]
 max-line-length = 120
@@ -62,19 +62,17 @@ ignore = E704  # Multiple statements on one line
 
 ## Contributing
 
-We deeply appreciate if you want to contribute to this project. To do so, please follow [these](contributing.md) guidelines.
+We deeply appreciate if you want to contribute to this project. To do so, please follow [these](CONTRIBUTING.md) guidelines.
 
 
 ## Credits
 
-This project could not have been done without the help of everyone involved. A **HUGE** thanks to [@johnsardine](https://github.com/johnsardine) :satisfied:
+This project could not have been done without the help of everyone involved. A **HUGE** thanks to [@johnsardine](https://github.com/johnsardine) :thumbsup:
 
 Some resources that you can use to understand better this project:
 - [Discover Flask, by Michael Herman](https://www.youtube.com/watch?v=WfpFUmV1d0w&list=PLLjmbh6XPGK4ISY747FUHXEl9lBxre4mM&feature=share)
 - [Flask by example - Project Setup](https://realpython.com/blog/python/flask-by-example-part-1-project-setup/)
 - [Microservices with Python and Flask - PyCon 2017](https://www.youtube.com/watch?v=nrzLdMWTRMM)
-
-If you have suggestions/bugs/requests feel free to send me a message.
 
 
 ## License
@@ -84,7 +82,8 @@ If you have suggestions/bugs/requests feel free to send me a message.
 
 ## Wiki and FAQ's
 
-We try to keep our wiki up-to-date as best as we can, so if you have any questions, please use it! If you don't find anything regarding what you are looking for, then create an issue and we will look at it as soon as possible. :+1:
+We try to keep our wiki up-to-date as best as we can, so if you have any questions, please use it! 
+If you don't find anything regarding what you are looking for or if you have any suggestions, then create an issue and we will look at it as soon as possible. :+1:
 
 
 
