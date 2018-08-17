@@ -4,6 +4,7 @@
 from flask import current_app as app
 from flask_script import Command, Option
 from project.user.models import User
+from project.user.services.create_user_service import CreateUserService
 
 
 class CreateUserCommand(Command):
@@ -28,10 +29,7 @@ class CreateUserCommand(Command):
             self.__class__.__name__, kwargs))
         self.__dict__.update(**kwargs)  # update self's with kwargs
         try:
-            user = User.create(self.username, self.password,
-                               is_admin=self.is_admin)
-            user.save()
-            app.logger.info("User \"{}\" was successfully created!".format(
-                self.username))
+            CreateUserService(self.username, self.password, is_admin=self.is_admin).call()
+            app.logger.info("User \"{}\" was successfully created!".format(self.username))
         except Exception as e:
             app.logger.error("Something went wrong :s. {}".format(e))

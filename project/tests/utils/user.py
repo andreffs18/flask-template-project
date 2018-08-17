@@ -1,7 +1,7 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
 """ Created by andresilva on 2/22/16"""
-import project.user.models as umodels
+from project.user.services.create_user_service import CreateUserService
 
 
 class UserTestUtils(object):
@@ -16,11 +16,11 @@ class UserTestUtils(object):
         if username is None:
             username = "username"
         if password is None:
-            password = "password"
+            password = b"password"
 
         kwargs = dict([
             ("username", username),
             ("password", password),
             ("is_admin", is_admin)
         ])
-        return umodels.User.create(**kwargs)
+        return CreateUserService(**kwargs).call()

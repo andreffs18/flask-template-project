@@ -17,7 +17,7 @@ class UserViewsTestCase(MVCTestCase):
         self.assertIn(b'Please login', res.data)
         self.assertEqual(res.status_code, 200)
         # test: with invalid credentials
-        data = dict(username="username", password="password")
+        data = dict(username="username", password=b"password")
         res = self.client.post(url_for("user.login"), data=data,
                                follow_redirects=True)
         self.assertIn(b'Invalid Credentials. Please try again.', res.data)
@@ -25,7 +25,7 @@ class UserViewsTestCase(MVCTestCase):
     def test_settings_page_loads(self):
         # Ensure settings page loads as expected
         self.create_user()
-        data = dict(username="username", password="password")
+        data = dict(username="username", password=b"password")
         res = self.client.post(url_for("user.login"), data=data,
                                follow_redirects=True)
         self.assertIn(b'Welcome username.', res.data)
@@ -41,13 +41,13 @@ class UserViewsTestCase(MVCTestCase):
                               follow_redirects=True)
         self.assertEqual(res.status_code, 200)
         # test: post request, creates new user with the following data
-        data = dict(username="myusername", password="mypassword",
+        data = dict(username="myusername", password=b"mypassword",
                     confirm_password="mypassword")
         res = self.client.post(url_for("user.register"), data=data,
                                follow_redirects=True)
         self.assertIn(b'Welcome myusername.', res.data)
         # test: try to register same username
-        data = dict(username="myusername", password="mypassword",
+        data = dict(username="myusername", password=b"mypassword",
                     confirm_password="mypassword")
         res = self.client.post(url_for("user.register"), data=data,
                                follow_redirects=True)
@@ -56,8 +56,8 @@ class UserViewsTestCase(MVCTestCase):
 
     def test_logout(self):
         # Ensure logout behaves correctly
-        self.create_user(username="username", password="password")
-        data = dict(username="username", password="password")
+        self.create_user(username="username", password=b"password")
+        data = dict(username="username", password=b"password")
         res = self.client.post(url_for("user.login"), data=data,
                          follow_redirects=True)
         self.assertIn(b'Welcome username.', res.data)

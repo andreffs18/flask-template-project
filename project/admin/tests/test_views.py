@@ -9,10 +9,10 @@ class AdminViewsTestCase(MVCTestCase):
 
     def setUp(self):
         super(AdminViewsTestCase, self).setUp()
-        self.me = self.create_user(username="abcdef", password="abcdef",
+        self.me = self.create_user(username="abcdef", password=b"abcdef",
                                    is_admin=True)
         # login to access admin pages
-        data = dict(username="abcdef", password="abcdef")
+        data = dict(username="abcdef", password=b"abcdef")
         self.client.post(url_for("user.login"), data=data,
                          follow_redirects=True)
 

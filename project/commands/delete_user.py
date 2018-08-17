@@ -4,6 +4,7 @@
 from flask import current_app as app
 from flask_script import Command, Option
 from project.user.models import User
+from project.user.services.delete_user_service import DeleteUserService
 
 
 class DeleteUserCommand(Command):
@@ -24,8 +25,7 @@ class DeleteUserCommand(Command):
         self.__dict__.update(**kwargs)  # update self's with kwargs
         try:
             user = User._objects.get(username=self.username)
-            user.delete(force=True)
-            user.save()
+            DeleteUserService(user, force=True).call()
             app.logger.info("User \"{}\" was successfully deleted!".format(
                 self.username))
         except Exception as e:

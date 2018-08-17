@@ -10,10 +10,10 @@ class UserAdminViewsTestCase(MVCTestCase):
 
     def setUp(self):
         super(UserAdminViewsTestCase, self).setUp()
-        self.me = self.create_user(username="abcdef", password="abcdef",
+        self.me = self.create_user(username="abcdef", password=b"abcdef",
                                    is_admin=True)
         # login to access admin pages
-        data = dict(username="abcdef", password="abcdef")
+        data = dict(username="abcdef", password=b"abcdef")
         self.client.post(url_for("user.login"), data=data,
                          follow_redirects=True)
 
@@ -23,7 +23,7 @@ class UserAdminViewsTestCase(MVCTestCase):
                               follow_redirects=True)
         self.assertEqual(res.status_code, 200)
         # test: create user with complete form data
-        data = dict(username="myusername", password="mypassword",
+        data = dict(username="myusername", password=b"mypassword",
                     email="myusername@test.com")
         res = self.client.post(url_for("admin.user_create"), data=data,
                                follow_redirects=True)
@@ -33,7 +33,7 @@ class UserAdminViewsTestCase(MVCTestCase):
                "created.</span>".format(url, str(user)))
         self.assertIn(msg, res.data)
         # test: try to create user with existing username and email
-        data = dict(username="myusername", password="mypassword",
+        data = dict(username="myusername", password=b"mypassword",
                     email="myusername@test.com")
         res = self.client.post(url_for("admin.user_create"), data=data,
                                follow_redirects=True)
@@ -44,7 +44,7 @@ class UserAdminViewsTestCase(MVCTestCase):
         # test: create non admin user
         self.assertFalse(user.is_admin)
         # test: create admin user
-        data = dict(username="admin", password="adminpassword",
+        data = dict(username="admin", password=b"adminpassword",
                     email="admin@test.com", is_admin=True)
         self.client.post(url_for("admin.user_create"), data=data,
                                follow_redirects=True)
