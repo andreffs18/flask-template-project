@@ -47,6 +47,19 @@ You have a list of available commands in the project manager. To run this projec
  * Debugger pin code: 123-456-789
 ```
 
+
+### Flake8 configuration
+Some custom properties were set when configuring Flake8 to validate if the codebase is PEP8 complain.
+
+A new configuration file **"flake8"** was created on `~/.config/` folder.
+
+> You can find more following Flake8's documentation: http://flake8.pycqa.org/en/latest/user/configuration.html#user-configuration
+```
+[flake8]
+max-line-length = 120
+ignore = E704  # Multiple statements on one line
+```
+
 ## Contributing
 
 We deeply appreciate if you want to contribute to this project. To do so, please follow [these](#) guidelines.
