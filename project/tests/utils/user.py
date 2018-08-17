@@ -1,18 +1,18 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/22/16"""
 from project.user.services.create_user_service import CreateUserService
 
 
 class UserTestUtils(object):
 
     def setUp(self):
-        """"""
         super(UserTestUtils, self).setUp()
 
     @staticmethod
     def create_user(username=None, password=None, is_admin=False):
-        """Aux test method that creates user from given arguments"""
+        """
+        Aux test method that creates user from given arguments
+        """
         if username is None:
             username = "username"
         if password is None:

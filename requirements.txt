@@ -48,3 +48,4 @@ six==1.10.0
 Werkzeug==0.12.2
 wrapt==1.10.8
 WTForms==2.1
+flake8==3.2.1

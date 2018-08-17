@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/21/16"""
 from flask_wtf import FlaskForm
 from wtforms.fields import StringField, PasswordField
 from wtforms.validators import DataRequired, EqualTo, ValidationError

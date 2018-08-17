@@ -1,14 +1,14 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-""" Created by andresilva on 2/19/16"""
 import os
 from flask import Flask
 
 
 def read_env(app, config_class):
-    """config environment variables and override with .env declared ones.
-    use configuration given by environment variable APP_ENV if "config_class"
-    is not given"""
+    """
+    config environment variables and override with .env declared ones. use configuration given by environment
+    variable APP_ENV if "config_class" is not given
+    """
     from flask_dotenv import DotEnv
     env = DotEnv()
     env.init_app(app)
@@ -30,13 +30,11 @@ def create_app(config=None):
     # define logging patterns
     import logging  # %(pathname)
     if app.config.get("TESTING"):
-        log_format = ("[%(asctime)s] %(funcName)s:%(lineno)d "
-                      "%(levelname)s - %(message)s")
+        log_format = "[%(asctime)s] %(funcName)s:%(lineno)d %(levelname)s - %(message)s"
         log_level = logging.DEBUG
 
     else:
-        log_format = ("[%(asctime)s] {%(filename)s#%(funcName)s:%(lineno)d} "
-                      "%(levelname)s - %(message)s")
+        log_format = "[%(asctime)s] {%(filename)s#%(funcName)s:%(lineno)d} %(levelname)s - %(message)s"
         log_level = logging.INFO
 
     formatter = logging.Formatter(log_format)
@@ -92,7 +90,3 @@ def create_app(config=None):
     login_manager.needs_refresh_message_category = 'info'
 
     return app
-
-__version_info__ = ('1', '0', '0')
-__author__ = "andresilva"
-__email__ = "andre@unbabel.com"

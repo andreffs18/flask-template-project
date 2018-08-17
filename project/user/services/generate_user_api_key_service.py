@@ -1,10 +1,9 @@
-import random
-import string
+import secrets
 
 
 class GenerateUserApiKeyService:
 
-    def __init__(self, user, size=64):
+    def __init__(self, user, size=32):
         self.user = user
         self.size = size
 
@@ -12,4 +11,6 @@ class GenerateUserApiKeyService:
         """
         For given size, generate random string with all ascii and digits
         """
-        return u''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(self.size))
+        self.user.api_key = secrets.token_hex(self.size)
+        self.user.save()
+        return self.user.api_key

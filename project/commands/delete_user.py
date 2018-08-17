@@ -1,6 +1,5 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-"""Created by andresilva on 6/15/16"""
 from flask import current_app as app
 from flask_script import Command, Option
 from project.user.models import User
@@ -20,13 +19,12 @@ class DeleteUserCommand(Command):
         ]
 
     def run(self, **kwargs):
-        app.logger.info("Running {} with arguments {}".format(
-            self.__class__.__name__, kwargs))
+        app.logger.info("Running {} with arguments {}".format(self.__class__.__name__, kwargs))
         self.__dict__.update(**kwargs)  # update self's with kwargs
         try:
             user = User._objects.get(username=self.username)
             DeleteUserService(user, force=True).call()
-            app.logger.info("User \"{}\" was successfully deleted!".format(
-                self.username))
+            app.logger.info("User \"{}\" was successfully deleted!".format(self.username))
+
         except Exception as e:
             app.logger.error("Something went wrong :s. {}".format(e))
