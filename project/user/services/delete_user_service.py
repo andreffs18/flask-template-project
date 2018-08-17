@@ -1,8 +1,3 @@
-from project.user.models import User
-from project.user.services.reset_user_password_service import ResetUserPasswordService
-from project.user.services.generate_user_api_key_service import GenerateUserApiKeyService
-
-
 class DeleteUserService:
 
     def __init__(self, user, force=False):
