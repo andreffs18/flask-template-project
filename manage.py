@@ -27,6 +27,6 @@ if __name__ == '__main__':
     manager.run()
 
 
-__version__ = '1.0.1'
+__version__ = '1.0.0'
 __author__ = "Andre Silva"
 __email__ = "andreffs18@gmail.com"

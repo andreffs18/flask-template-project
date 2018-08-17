@@ -5,19 +5,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [1.0.0](https://github.com/andreffs18/flask-template-project/releases/tag/v1.0.0) - 2018-08-18
 
-### Added for new features.
+### Added.
 
 * Flake8 to be PEP8 complaint.  
 
 ### Changed
 
-* Codebase to follow Single Responsibility Principle.
+* **User** app to follow Single Responsibility Principle.
+* Admin CMS by **Flask-Admin**
 
+### Security
 
-### Deprecated for soon-to-be removed features.
-### Removed for now removed features.
-### Fixed for any bug fixes.
-### Security in case of vulnerabilities.
+* Api Key generation now uses python [secrets](https://docs.python.org/3/library/secrets.html) module instead of random.
 
 ## [0.0.1](https://github.com/andreffs18/flask-template-project/releases/tag/v0.0.1) - 2017-02-05
 
