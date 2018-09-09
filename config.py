@@ -12,9 +12,16 @@ class BaseConfig(object):
     TESTING = True
     SECRET_KEY = os.getenv("SECRET_KEY")
 
+    # Set flask admin layout to use container-fluid css
+    FLASK_ADMIN_FLUID_LAYOUT = True
+
     # Database URI
     SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS", "True")
+
+    # HTTP Basic Auth
+    BASIC_AUTH_USERNAME = 'me'
+    BASIC_AUTH_PASSWORD = 'me'
 
     # Third party services - codacy.com
     # Coverage given by codacy.com. You need to register you project

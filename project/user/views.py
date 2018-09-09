@@ -14,7 +14,7 @@ user_blueprint = Blueprint('user', __name__)
 @user_blueprint.route('/settings/', methods=['GET'])
 @login_required
 def settings():
-    flash.info('Welcome to your dashboard "{}".'.format(str(current_user)))
+    flash.info('Welcome to your dashboard "{}".'.format(current_user.username))
     return render_template('user/settings.html')
 
 
@@ -25,7 +25,7 @@ def register():
     if request.method == "POST":
         user = UserHandler.register(form)
         if user:
-            flash.info('Welcome "{}".'.format(str(user)))
+            flash.info('Welcome "{}".'.format(user.username))
             return redirect(request.args.get('next', url_for('app.home')))
 
     return render_template('user/register.html', form=form)
@@ -38,7 +38,7 @@ def login():
     if request.method == "POST":
         user = UserHandler.login(form)
         if user:
-            flash.info('Welcome "{}".'.format(str(user)))
+            flash.info('Welcome "{}".'.format(user.username))
             return redirect(request.args.get('next', url_for('app.home')))
 
     return render_template('user/login.html', form=form)

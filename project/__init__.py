@@ -4,10 +4,12 @@ import logging
 from flask import Flask
 
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_basicauth import BasicAuth
 from flask_login import LoginManager
 from flask_dotenv import DotEnv
 from flask_bcrypt import Bcrypt
 from flask_restful import Api
+from flask_admin import Admin
 from flask_rq import RQ
 
 from project.database import db
@@ -55,22 +57,27 @@ def create_app(config=None):
 
     # register view blueprints
     from project.home.views import app_blueprint
-    from project.admin.views import admin_blueprint
     from project.user.views import user_blueprint
     app.register_blueprint(app_blueprint)
     app.register_blueprint(user_blueprint)
-    app.register_blueprint(admin_blueprint, url_prefix="/admin")
 
     # setup apps
     DebugToolbarExtension(app)
     Bcrypt(app)
     RQ(app)
+    BasicAuth(app)
     db.init_app(app)
+
+    # register admin view
+    from flask_admin.contrib.sqla import ModelView
+    from project.user.models import User
+    admin = Admin(app, name='Admin Panel', template_mode='bootstrap3')
+    admin.add_view(ModelView(User, db.session, endpoint="admin.user"))
 
     # register api endpoints
     from project.api.v1.user import User
     api = Api(app, prefix='/api/v1/')
-    api.add_resource(User, 'user/', endpoint='user')
+    api.add_resource(User, 'user/', endpoint='api.v1.user')
 
     # import custom login manager functions
     from project.user.login_manager import load_user_from_request, load_user
