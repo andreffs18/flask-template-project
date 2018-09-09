@@ -10,12 +10,12 @@ from project.api import Resources
 admin_blueprint = Blueprint('admin', __name__)
 
 
-@admin_blueprint.route('/admin/users/')
+@admin_blueprint.route('/users/')
 def home_users():
-    return redirect("/admin/#users")
+    return redirect("/#users")
 
 
-@admin_blueprint.route('/admin/')
+@admin_blueprint.route('/')
 @login_required
 @admin_required
 def home():

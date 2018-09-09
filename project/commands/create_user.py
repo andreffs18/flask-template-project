@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from flask import current_app as app
 from flask_script import Command, Option
-from project.user.models import User
 from project.user.services.create_user_service import CreateUserService
 
 
@@ -21,8 +20,7 @@ class CreateUserCommand(Command):
         return [
             Option('-u', '--username', dest='username', default=self.username),
             Option('-p', '--password', dest='password', default=self.password),
-            Option('--is_admin', dest='is_admin', action="store_true",
-                   default=self.is_admin)
+            Option('--is_admin', dest='is_admin', action="store_true", default=self.is_admin)
         ]
 
     def run(self, **kwargs):

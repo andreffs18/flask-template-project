@@ -1,43 +1,19 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-from mongoengine.document import Document
-from mongoengine.fields import StringField, BinaryField, BooleanField
-from mongoengine.queryset import queryset_manager
-
+from project.database import Base
+from sqlalchemy import Column, Integer, String, Boolean
 from flask_login import UserMixin
 
 
-class User(UserMixin, Document):
-    username = StringField(required=True, unique=True)
-    password = BinaryField(required=True)
-    api_key = StringField(required=False)
-    is_admin = BooleanField(default=False)
+class User(UserMixin, Base):
+    __tablename__ = 'users'
 
-    _is_deleted = BooleanField(default=False)
-
-    def __str__(self):
-        return "{}".format(self.username)
+    id = Column(Integer, primary_key=True)
+    username = Column(String(64), unique=True)
+    email = Column(String(128), unique=True)
+    password = Column(String(128))
+    api_key = Column(String(128))
+    is_admin = Column(Boolean)
 
     def __repr__(self):
-        return "<User: {}>".format(str(self))
-
-    meta = {
-        # 'allow_inheritance': True,
-        'indexes': [
-            ('username',),
-        ],
-    }
-
-    @queryset_manager
-    def _objects(doc_cls, queryset):
-        """
-        Original queryset manager for this object that return every collection available in the database
-        """
-        return queryset
-
-    @queryset_manager
-    def objects(doc_cls, queryset):
-        """
-        Hides all "deleted" users from every query
-        """
-        return queryset.filter(_is_deleted=False)
+        return '<User %r>' % self.username

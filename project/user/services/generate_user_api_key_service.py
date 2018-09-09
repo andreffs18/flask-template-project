@@ -1,4 +1,5 @@
 import secrets
+from project.database import db
 
 
 class GenerateUserApiKeyService:
@@ -12,5 +13,5 @@ class GenerateUserApiKeyService:
         For given size, generate random string with all ascii and digits
         """
         self.user.api_key = secrets.token_hex(self.size)
-        self.user.save()
+        db.session.commit()
         return self.user.api_key

@@ -8,10 +8,12 @@ parser = reqparse.RequestParser()
 
 
 class Version(Resource):
-    """Version of API"""
+    """
+    Version of API
+    """
 
     @staticmethod
     def get(self):
         """Shows version of app """
         from manage import __version__
-        return {"status": 200, "version": __version__, "name": app.config.get('MACHINE_NAME')}, 200
+        return {"status": 200, "version": __version__}, 200

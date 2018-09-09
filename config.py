@@ -2,35 +2,43 @@
 # -*- coding: utf-8 -*-
 import os
 
+from dotenv import load_dotenv
+if os.path.isfile('.env'):
+    load_dotenv('.env', override=True)
+
 
 class BaseConfig(object):
     DEBUG = False
     TESTING = True
-    MACHINE_NAME = "Flask Template Project"
-    SECRET_KEY = os.environ.get("SECRET_KEY")
-    MONGODB_DB = os.environ.get("MONGO_DB", "default")
+    SECRET_KEY = os.getenv("SECRET_KEY")
+
+    # Database URI
+    SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
+    SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS", "True")
 
     # Third party services - codacy.com
     # Coverage given by codacy.com. You need to register you project
     # there so they can give you the access token for this functionality
-    CODACY_PROJECT_TOKEN = os.environ.get("CODACY_PROJECT_TOKEN")
+    CODACY_PROJECT_TOKEN = os.getenv("CODACY_PROJECT_TOKEN")
 
 
 class TestConfig(BaseConfig):
+    APP_ENV = "test"
     DEBUG = True
     WTF_CSRF_ENABLED = False
     DEBUG_TB_PROFILER_ENABLED = False
     DEBUG_TB_INTERCEPT_REDIRECTS = False
-    MONGODB_DB = os.environ.get("MONGO_DB_TEST", "default_test")
 
 
 class LocalhostConfig(BaseConfig):
+    APP_ENV = "localhost"
     DEBUG = True
     DEBUG_TB_PROFILER_ENABLED = True
     DEBUG_TB_INTERCEPT_REDIRECTS = False
 
 
 class StagingConfig(BaseConfig):
+    APP_ENV = "staging"
     DEBUG = True
     TESTING = False
     DEBUG_TB_PROFILER_ENABLED = True
@@ -38,16 +46,16 @@ class StagingConfig(BaseConfig):
 
 
 class ProductionConfig(BaseConfig):
-    DEBUG = False
+    APP_ENV = "production"
     TESTING = False
 
 
 config = {
-    '_baseconfig': BaseConfig,
-    'localhost': LocalhostConfig,
-    'test': TestConfig,
-    'staging': StagingConfig,
-    'production': ProductionConfig,
+    '_baseconfig': "config.BaseConfig",
+    'localhost': "config.LocalhostConfig",
+    'test': "config.TestConfig",
+    'staging': "configStagingConfig",
+    'production': "configProductionConfig",
 }
 
 __all__ = ['config']

@@ -1,6 +1,4 @@
-
 from flask_bcrypt import check_password_hash
-
 
 from project.user.services.create_user_service import CreateUserService
 from project.user.services.login_user_service import LoginUserService
@@ -15,7 +13,7 @@ class UserHandler:
     @classmethod
     def login(cls, form):
         """
-        Login user by givin "LoginForm" form and validate if username+password pair is valid
+        Login user by giving "LoginForm" form and validate if username+password pair is valid
         """
         if not form.validate_on_submit():
             flash.danger(u'Form is not valid.')
@@ -27,7 +25,7 @@ class UserHandler:
             return False
 
         if not check_password_hash(user.password, form.password.data):
-            flash.warning('Invalid Credentials. Please try again.')
+            flash.warning(u'Invalid Credentials. Please try again.')
             return False
 
         LoginUserService(user).call()

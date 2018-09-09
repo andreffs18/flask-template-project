@@ -24,6 +24,7 @@ if __name__ == '__main__':
     manager.add_command("routes", cmd.ListRoutesCommand())
     manager.add_command("create-user", cmd.CreateUserCommand())
     manager.add_command("delete-user", cmd.DeleteUserCommand())
+    manager.add_command("create-db", cmd.CreateDBCommand())
     manager.run()
 
 

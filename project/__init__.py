@@ -1,7 +1,17 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-import os
+import logging
 from flask import Flask
+
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_dotenv import DotEnv
+from flask_bcrypt import Bcrypt
+from flask_rq import RQ
+from flask_restful import Api
+from flask_login import LoginManager
+
+from project.database import db
+from config import config as project_config
 
 
 def read_env(app, config_class):
@@ -9,16 +19,29 @@ def read_env(app, config_class):
     config environment variables and override with .env declared ones. use configuration given by environment
     variable APP_ENV if "config_class" is not given
     """
-    from flask_dotenv import DotEnv
     env = DotEnv()
-    env.init_app(app)
-    # get all new .env variable and add them to os.environ dict
-    os.environ.update([(x[0], str(x[1])) for x in list(app.config.items())])
+    env.init_app(app, env_file=".env")
+
     # get correct APP_ENV and right variable
-    if config_class is None:
-        from config import config as c
-        config_class = c.get(app.config.get('APP_ENV'))
+    if not config_class:
+        config_class = project_config.get(app.config.get('APP_ENV'))
     app.config.from_object(config_class)
+    return app
+
+
+def setup_logger(app):
+    """
+    config logger depending on APP_ENV
+    """
+    log_level = logging.DEBUG if app.config.get("TESTING") else logging.INFO
+    log_format = "[%(asctime)s] {%(filename)s#%(funcName)s:%(lineno)d} %(levelname)s - %(message)s"
+    handler = logging.StreamHandler()
+    handler.setLevel(log_level)
+    handler.setFormatter(logging.Formatter(log_format))
+    app.logger.addHandler(handler)
+    app.logger.setLevel(log_level)
+    # remove default Flask debug handler
+    del app.logger.handlers[0]
     return app
 
 
@@ -28,65 +51,40 @@ def create_app(config=None):
     app = read_env(app, config)
 
     # define logging patterns
-    import logging  # %(pathname)
-    if app.config.get("TESTING"):
-        log_format = "[%(asctime)s] %(funcName)s:%(lineno)d %(levelname)s - %(message)s"
-        log_level = logging.DEBUG
-
-    else:
-        log_format = "[%(asctime)s] {%(filename)s#%(funcName)s:%(lineno)d} %(levelname)s - %(message)s"
-        log_level = logging.INFO
-
-    formatter = logging.Formatter(log_format)
-    handler = logging.StreamHandler()
-    handler.setLevel(log_level)
-    handler.setFormatter(formatter)
-    app.logger.addHandler(handler)
-    app.logger.setLevel(log_level)
-    # remove default Flask debug handler
-    del app.logger.handlers[0]
-
-    # setup apps
-    from flask_debugtoolbar import DebugToolbarExtension
-    from flask_mongoengine import MongoEngine
-    from flask_bcrypt import Bcrypt
-    from flask_rq import RQ
-    from flask_restful import Api
-    from flask_login import LoginManager
-
-    DebugToolbarExtension(app)
-    MongoEngine(app)
-    Bcrypt(app)
-    RQ(app)
-    api = Api(app)
-    login_manager = LoginManager(app)
+    app = setup_logger(app)
 
     # register view blueprints
     from project.home.views import app_blueprint
     from project.admin.views import admin_blueprint
     from project.user.views import user_blueprint
-
     app.register_blueprint(app_blueprint)
-    app.register_blueprint(admin_blueprint)
     app.register_blueprint(user_blueprint)
+    app.register_blueprint(admin_blueprint, url_prefix="/admin")
+
+    # setup apps
+    DebugToolbarExtension(app)
+    Bcrypt(app)
+    RQ(app)
+    db.init_app(app)
 
     # register api endpoints
     from .api import Resources, API_VERSION
+    api = Api(app)
     for resource, url in Resources:
         _endpoint = ".".join(API_VERSION.format(url).split("/")[1:-1])
         api.add_resource(resource, API_VERSION.format(url), endpoint=_endpoint)
 
     # import custom login manager functions
-    from project.home.login_manager import load_user_from_request, load_user
+    from project.user.login_manager import load_user_from_request, load_user
+    login_manager = LoginManager(app)
     login_manager.login_view = "user.login"
     login_manager.user_loader(load_user)
     login_manager.request_loader(load_user_from_request)
-
-    # jinja extensions
-    app.jinja_env.add_extension('jinja2.ext.do')
-
     # default flashed messages category
     login_manager.login_message_category = 'info'
     login_manager.needs_refresh_message_category = 'info'
+
+    # jinja extensions
+    app.jinja_env.add_extension('jinja2.ext.do')
 
     return app

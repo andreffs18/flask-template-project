@@ -5,8 +5,12 @@ class UserFinder:
 
     @classmethod
     def by_id(cls, user_id):
-        return User.objects.filter(id=user_id).first()
+        return User.query.filter(User.id == user_id).first()
 
     @classmethod
     def by_username(cls, username):
-        return User.objects.filter(username=username).first()
+        return User.query.filter(User.username == username).first()
+
+    @classmethod
+    def by_api_key(cls, api_key):
+        return User.query.filter(User.api_key == api_key).first()
