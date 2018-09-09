@@ -4,11 +4,11 @@ import logging
 from flask import Flask
 
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_login import LoginManager
 from flask_dotenv import DotEnv
 from flask_bcrypt import Bcrypt
-from flask_rq import RQ
 from flask_restful import Api
-from flask_login import LoginManager
+from flask_rq import RQ
 
 from project.database import db
 from config import config as project_config
@@ -68,11 +68,9 @@ def create_app(config=None):
     db.init_app(app)
 
     # register api endpoints
-    from .api import Resources, API_VERSION
-    api = Api(app)
-    for resource, url in Resources:
-        _endpoint = ".".join(API_VERSION.format(url).split("/")[1:-1])
-        api.add_resource(resource, API_VERSION.format(url), endpoint=_endpoint)
+    from project.api.v1.user import User
+    api = Api(app, prefix='/api/v1/')
+    api.add_resource(User, 'user/', endpoint='user')
 
     # import custom login manager functions
     from project.user.login_manager import load_user_from_request, load_user

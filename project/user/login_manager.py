@@ -37,8 +37,9 @@ def load_user_from_request(request):
     auth = auth.replace('Basic ', '', 1)
     try:
         auth = bytes(auth, 'utf8')
-        auth = base64.b64decode(auth).decode()
-    except (TypeError, binascii.Error):
+        auth = base64.b64decode(auth)
+        auth = auth.decode()
+    except (UnicodeDecodeError, TypeError, binascii.Error):
         # make byte string "Str" again
         auth = auth.decode()
 

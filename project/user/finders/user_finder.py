@@ -4,6 +4,10 @@ from project.user.models import User
 class UserFinder:
 
     @classmethod
+    def all(cls):
+        return User.query.filter().all()
+
+    @classmethod
     def by_id(cls, user_id):
         return User.query.filter(User.id == user_id).first()
 

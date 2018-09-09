@@ -5,7 +5,6 @@ from flask_login import login_required
 from flask_mongoengine import Pagination
 
 from project.home.decorators import admin_required
-from project.api import Resources
 
 admin_blueprint = Blueprint('admin', __name__)
 
@@ -26,7 +25,7 @@ def home():
     upage = int(params.get('user-page', 1))
     users = Pagination(User.objects.all(), upage, 20)
 
-    return render_template('admin/home.html', **{'users': users, 'resources': Resources})
+    return render_template('admin/home.html', **{'users': users})
 
 
 # Load remaining endpoints
