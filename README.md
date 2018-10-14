@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/dc41f3a0b9a1474caf15043e270ef497)](https://www.codacy.com/app/andreffs18/flask-template-project?utm_source=github.com&utm_medium=referral&utm_content=andreffs18/flask-template-project&utm_campaign=Badge_Coverage)
 
 
-This is ready-to-go, empty, bootstrapped, **Flask** project with some neat features like, Python3.6, Blueprint Structure, RESTfull api, LoginManager, Tests and Basic Admin CMS. 
+This is ready-to-go, bootstrapped, **Flask** project with some neat features like, Python3.6, Blueprint Structure, RESTfull api, LoginManager, Basic Admin CMS with Basic Auth with a complete test suit! 
 
 ## Table of contents
 
@@ -21,9 +21,10 @@ This is ready-to-go, empty, bootstrapped, **Flask** project with some neat featu
 First you need to create an Environment file. To do so, inside the projects root folder create a file named **.env** with the following _key-value_ table:
 ```python
 APP_ENV=localhost
-SECRET_KEY=<SECRET_KEY>
-MONGO_DB=your_db_nam
-MONGO_DB_TEST=your_test_db_name
+SECRET_KEY=<SECRET KEY>
+SQLALCHEMY_DATABASE_URI=<SQLACHEMY DATABASE URL>
+BASIC_AUTH_USERNAME=<BASIC AUTH USERNAME>
+BASIC_AUTH_PASSWORD=<BASIC AUTH PASSWORD>
 ```
 
 > **Note:** To generate a fresh **SECRET_KEY** you can select any key from this website: [http://randomkeygen.com/](http://randomkeygen.com/)
