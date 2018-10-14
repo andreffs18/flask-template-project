@@ -3,6 +3,8 @@
 import os
 
 from dotenv import load_dotenv
+
+
 if os.path.isfile('.env'):
     load_dotenv('.env', override=True)
 
@@ -19,9 +21,9 @@ class BaseConfig(object):
     SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI")
     SQLALCHEMY_TRACK_MODIFICATIONS = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS", "True")
 
-    # HTTP Basic Auth
-    BASIC_AUTH_USERNAME = 'me'
-    BASIC_AUTH_PASSWORD = 'me'
+    # HTTP Basic Auth for Admin pages
+    BASIC_AUTH_USERNAME = os.getenv('BASIC_AUTH_USERNAME')
+    BASIC_AUTH_PASSWORD = os.getenv('BASIC_AUTH_PASSWORD')
 
     # Third party services - codacy.com
     # Coverage given by codacy.com. You need to register you project
