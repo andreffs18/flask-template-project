@@ -44,14 +44,14 @@ def load_user_from_request(request):
         auth = auth.decode()
 
     # try if auth is api_key
-    user = UserFinder.by_api_key(auth).first()
+    user = UserFinder.by_api_key(auth)
     if user:
         return user
 
     # if not, try with username and password
     if ":" in auth:
         username, password = auth.split(":")
-        user = UserFinder.by_username(username).first()
+        user = UserFinder.by_username(username)
         if user and check_password_hash(user.password, password):
             return user
 

@@ -65,14 +65,14 @@ def create_app(config=None):
     DebugToolbarExtension(app)
     Bcrypt(app)
     RQ(app)
-    BasicAuth(app)
+    basic_auth = BasicAuth(app)
     db.init_app(app)
 
     # register admin view
-    from flask_admin.contrib.sqla import ModelView
+    from project.admin.models import ModelView
     from project.user.models import User
     admin = Admin(app, name='Admin Panel', template_mode='bootstrap3')
-    admin.add_view(ModelView(User, db.session, endpoint="admin.user"))
+    admin.add_view(ModelView(User, db.session, basic_auth, endpoint="admin/user"))
 
     # register api endpoints
     from project.api.v1.user import User
