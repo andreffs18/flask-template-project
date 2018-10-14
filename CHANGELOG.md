@@ -3,9 +3,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [0.2.0]()
+## [0.2.0](https://github.com/andreffs18/flask-template-project/releases/tag/v0.2.0) - 2018-10-14
+
 ### Added
-* Admin CMS by **Flask-Admin**
+* Basic Admin CMS with **Flask-Admin** [!14](https://github.com/andreffs18/flask-template-project/pull/14)
+* Basic Auth on Admin pages using **Flask-Basic-Auth** [!14](https://github.com/andreffs18/flask-template-project/pull/14)
+
+### Changed
+* Replaced **requirements.txt** with **[Pipfile]**(https://pipenv.readthedocs.io) to manage project dependencies. [!16](https://github.com/andreffs18/flask-template-project/pull/16)
+
+### Security
+* Update Flask requirement to 1.0.2 [!16](https://github.com/andreffs18/flask-template-project/pull/16)
 
 ## [0.1.0](https://github.com/andreffs18/flask-template-project/releases/tag/v0.1.0) - 2018-09-09
 
