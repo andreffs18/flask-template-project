@@ -85,7 +85,7 @@ Some resources that you can use to understand better this project:
 
 ## License
 
-[MIT License Copyright (c)](/LICENCE.md) 2018 andreffs18
+[MIT License Copyright (c)](/LICENSE.md) 2018 andreffs18
 
 
 ## Wiki and FAQ's
