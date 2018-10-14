@@ -8,8 +8,8 @@ We love pull requests from everyone. To participate in this project you just nee
 
 #### Set up your machine:
 
-    $ mkvirtualenv env
-    $ pip install -r requirements.txt
+    $ pipenv install
+    $ pipenv shell
 
 #### Make sure the tests pass:
 

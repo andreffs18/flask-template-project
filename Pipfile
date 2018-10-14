@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-bcrypt = "*"
+flask-dotenv = "*"
+flask-login = "*"
+flask-restful = "*"
+flask-script = "*"
+flask-testing = "*"
+flask-wtf = "*"
+flask-sqlalchemy = "*"
+flask-basicauth = "*"
+flask-admin = "*"
+flask-debugtoolbar = "*"
+flask-rq = "*"
+"flake8" = "*"
+requests = "*"
+python-dotenv = "*"
+"bs4" = "*"
+"psycopg2" = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
