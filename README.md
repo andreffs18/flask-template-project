@@ -29,23 +29,30 @@ BASIC_AUTH_PASSWORD=<BASIC AUTH PASSWORD>
 
 > **Note:** To generate a fresh **SECRET_KEY** you can select any key from this website: [http://randomkeygen.com/](http://randomkeygen.com/)
 
-Now that you have a **.env** file, you need to create a **virtual environment** in your local machine and install the **requirements.txt** file that exists in the project's root folder. To do so, you need to:
+This project uses [**Pipenv**](https://pipenv.readthedocs.io/en/latest/) to install and manage all it's dependencies. So you just need to simply run:
+
 ```shell
-$ mkvirtualenv <venv>
-[<venv>] $ pip install -r requirements.txt
+$ pipenv install
+(flask-template-project-Ad2ZDIA5) $ pipenv shell
 ```
 
+And your virtual environment will be configured! 
 
 ## Usage
 
 You have a list of available commands in the project manager. To run this project locally, you will use **runserver**. (To know more about all the commands available you can do ```$ python manage.py``` or consult the wiki page about [Commands](#)).
 
 ```shell
-[<venv>] $ python manage.py runserver
+(flask-template-project-Ad2ZDIA5) $ python manage.py runserver
+ * Serving Flask app "project" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  * Restarting with stat
  * Debugger is active!
- * Debugger pin code: 123-456-789
+ * Debugger PIN: 859-626-128
 ```
 
 
