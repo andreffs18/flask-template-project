@@ -1,10 +1,8 @@
 # !/usr/bin/python
 # -*- coding: utf-8 -*-
-from mongoengine import ValidationError
 from flask_bcrypt import check_password_hash
-from flask_login import current_user, login_user
 from project.tests.base import MVCTestCase
-import project.user.models as umodels
+from project.user.models.user import User
 from project.user.services.create_user_service import CreateUserService
 from project.user.services.reset_user_password_service import ResetUserPasswordService
 from project.user.services.delete_user_service import DeleteUserService
@@ -47,10 +45,10 @@ class UserModelTestCase(MVCTestCase):
         Ensure delete method is not actually deleting the editor, but only deletes it from the database if the flag
         "force" is given
         """
-        self.assertEqual(1, umodels.User.objects.count())
+        self.assertEqual(1, User.objects.count())
         DeleteUserService(self.user).call()
-        self.assertEqual(0, umodels.User.objects.count())
-        self.assertEqual(1, umodels.User._objects.count())
+        self.assertEqual(0, User.objects.count())
+        self.assertEqual(1, User._objects.count())
         DeleteUserService(self.user, force=True).call()
-        self.assertEqual(0, umodels.User.objects.count())
-        self.assertEqual(0, umodels.User._objects.count())
+        self.assertEqual(0, User.objects.count())
+        self.assertEqual(0, User._objects.count())

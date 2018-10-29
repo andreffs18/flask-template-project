@@ -68,17 +68,6 @@ def create_app(config=None):
     basic_auth = BasicAuth(app)
     db.init_app(app)
 
-    # register admin view
-    from project.admin.models import ModelView
-    from project.user.models import User
-    admin = Admin(app, name='Admin Panel', template_mode='bootstrap3')
-    admin.add_view(ModelView(User, db.session, basic_auth, endpoint="users"))
-
-    # register api endpoints
-    from project.api.v1.user import User
-    api = Api(app, prefix='/api/v1/')
-    api.add_resource(User, 'users/', endpoint='api.v1.users')
-
     # import custom login manager functions
     from project.user.login_manager import load_user_from_request, load_user
     login_manager = LoginManager(app)
@@ -91,5 +80,19 @@ def create_app(config=None):
 
     # jinja extensions
     app.jinja_env.add_extension('jinja2.ext.do')
+
+    # register admin view
+    from project.admin.models import ModelView
+    from project.user.models.user import User
+    from project.user.models.role import Role
+
+    # setup flask admin to show admin pages
+    admin = Admin(app, name='Admin Panel', template_mode='  bootstrap3')
+    admin.add_view(ModelView(User, db.session, basic_auth, endpoint="users"))
+
+    # register api endpoints
+    from project.api.v1.user import User
+    api = Api(app, prefix='/api/v1/')
+    api.add_resource(User, 'users/', endpoint='api.v1.users')
 
     return app

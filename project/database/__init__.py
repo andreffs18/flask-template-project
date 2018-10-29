@@ -12,7 +12,10 @@ def init_db(app):
     # they will be registered properly on the metadata.  Otherwise
     # you will have to import them first before calling init_db()
     app.logger.debug("Initializing Database Tables")
-    from project.user.models import User
+    import pdb; pdb.set_trace()
+    from project.user.models.user import User
+    from project.user.models.role import Role
+    from project.user.models.user_role import UsersRoles
     Base.metadata.create_all(bind=db.engine)
 
 

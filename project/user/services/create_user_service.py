@@ -1,5 +1,5 @@
 from project.database import db
-from project.user.models import User
+from project.user.models.user import User
 from project.user.services.reset_user_password_service import ResetUserPasswordService
 from project.user.services.generate_user_api_key_service import GenerateUserApiKeyService
 

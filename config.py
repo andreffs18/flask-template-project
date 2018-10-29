@@ -29,6 +29,9 @@ class BaseConfig(object):
     # there so they can give you the access token for this functionality
     CODACY_PROJECT_TOKEN = os.getenv("CODACY_PROJECT_TOKEN")
 
+    # Flask RBAC environment that defines rules you did not add cannot access the resources.
+    RBAC_USE_WHITE = os.getenv("RBAC_USE_WHITE", "True")
+
 
 class TestConfig(BaseConfig):
     APP_ENV = "test"
