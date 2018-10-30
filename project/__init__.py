@@ -69,10 +69,16 @@ def create_app(config=None):
     db.init_app(app)
 
     # register admin view
-    from project.admin.models import ModelView
-    from project.user.models import User
+    from project.user.models.user import User
+    from project.user.models.role import Role
+    from project.user.models.user_roles import UserRoles
+
+    from project.admin.views import ModelView, SuperSecretPage
+    from project.user.admin.views import UserView
     admin = Admin(app, name='Admin Panel', template_mode='bootstrap3')
-    admin.add_view(ModelView(User, db.session, basic_auth, endpoint="users"))
+    admin.add_view(UserView(User, db.session, basic_auth, endpoint="users"))
+    admin.add_view(ModelView(Role, db.session, basic_auth, endpoint="roles"))
+    admin.add_view(SuperSecretPage(name="Secret"))
 
     # register api endpoints
     from project.api.v1.user import User

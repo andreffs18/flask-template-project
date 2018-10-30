@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import current_app as app
 from flask_script import Command, Option
-from project.user.models import User
+from project.user.models.user import User
 from project.user.services.delete_user_service import DeleteUserService
 
 

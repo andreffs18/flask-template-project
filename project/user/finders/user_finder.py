@@ -1,4 +1,4 @@
-from project.user.models import User
+from project.user.models.user import User
 
 
 class UserFinder:
