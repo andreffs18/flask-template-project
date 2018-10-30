@@ -7,10 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [0.2.1](https://github.com/andreffs18/flask-template-project/releases/tag/v0.2.1) - 2018-10-30
 
 ### Added
-* User Management using RBAC (Role Base Access Control) [[!14](https://github.com/andreffs18/flask-template-project/pull/14)]
+* User Management using RBAC (Role Base Access Control) [[!18](https://github.com/andreffs18/flask-template-project/pull/18)]
 
 ### Security
-* Update **requests** version to 2.20.0 [[!16](https://github.com/andreffs18/flask-template-project/pull/16)]
+* Update **requests** version to 2.20.0 
 
 
 ## [0.2.0](https://github.com/andreffs18/flask-template-project/releases/tag/v0.2.0) - 2018-10-14
