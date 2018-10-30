@@ -45,6 +45,7 @@ def login():
 
 
 @user_blueprint.route('/logout/')
+@login_required
 def logout():
     UserHandler.logout()
     flash.info(u'You were logged out.')

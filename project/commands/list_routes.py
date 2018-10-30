@@ -23,5 +23,6 @@ class ListRoutesCommand(Command):
             line = urllib.parse.unquote("{:50s} {:20s} {}".format(rule.endpoint, methods, url))
             output.append(line)
 
+        print("{:50s} {:20s} Urls".format("Endpoint", "Methods"))
         for line in sorted(output):
             print(line)
