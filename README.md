@@ -4,7 +4,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/dc41f3a0b9a1474caf15043e270ef497)](https://www.codacy.com/app/andreffs18/flask-template-project?utm_source=github.com&utm_medium=referral&utm_content=andreffs18/flask-template-project&utm_campaign=Badge_Coverage)
 
 
-This is ready-to-go, bootstrapped **Flask 1.0** project with some neat features like, Python3.6, Blueprint Structure, RESTfull api, Login & User Managment, Basic Admin CMS with Basic Auth with a complete test suit! 
+This is ready-to-go, bootstrapped **Flask 1.0** project with some neat features like, Python3.6, Blueprint Structure, RESTfull api, Login & User Management, Basic Admin CMS with Basic Auth with a complete test suit! 
 
 ## Table of contents
 
