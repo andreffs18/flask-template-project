@@ -5,6 +5,7 @@ from flask import Flask
 
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_basicauth import BasicAuth
+from flask_graphql import GraphQLView
 from flask_login import LoginManager
 from flask_dotenv import DotEnv
 from flask_bcrypt import Bcrypt
@@ -67,6 +68,12 @@ def create_app(config=None):
     RQ(app)
     basic_auth = BasicAuth(app)
     db.init_app(app)
+
+    # register graphql view
+    from project.graphql.schema import schema
+    app.add_url_rule(
+        "/graphql", view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True)
+    )
 
     # register admin view
     from project.user.models.user import User

@@ -22,6 +22,8 @@ requests = ">=2.20.0"
 python-dotenv = "*"
 "bs4" = "*"
 "psycopg2" = "*"
+flask-graphql = "*"
+graphene-sqlalchemy = "*"
 
 [dev-packages]
 
