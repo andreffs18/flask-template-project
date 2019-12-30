@@ -23,7 +23,7 @@ class DeleteUserCommand(Command):
         self.__dict__.update(**kwargs)  # update self's with kwargs
         try:
             user = User._objects.get(username=self.username)
-            DeleteUserService(user, force=True).call()
+            DeleteUserService(user).call()
             app.logger.info("User \"{}\" was successfully deleted!".format(self.username))
 
         except Exception as e:
