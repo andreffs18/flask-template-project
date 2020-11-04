@@ -1,0 +1,51 @@
+version: 1
+
+formatters:
+  default:
+    format: "[%(asctime)s][%(levelname)s][request_id=%(request_id)s][correlation_id=%(correlation_id)s] %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+    (): logger.formatter.CustomFormatter
+
+  http_formatter:
+    format: "[%(asctime)s][%(levelname)s][request_id=%(request_id)s][correlation_id=%(correlation_id)s] host=%(host)s method=%(method)s path=%(path)s %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+    (): logger.formatter.CustomFormatter
+
+handlers:
+  default:
+    class: logging.StreamHandler
+    formatter: default
+
+  http_handler:
+    class: logging.StreamHandler
+    formatter: http_formatter
+
+root:
+  level: INFO
+  handlers:
+    - default
+
+loggers:
+  app:
+    level: INFO
+    handlers:
+      - default
+    propagate: 0
+
+  logger.http:
+    level: INFO
+    handlers:
+      - http_handler
+    propagate: 0
+
+  werkzeug:
+    level: INFO
+    handlers:
+      - default
+    propagate: 0
+
+  requests:
+    level: INFO
+    handlers:
+      - default
+    propagate: 0
