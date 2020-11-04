@@ -21,10 +21,10 @@ This is ready-to-go, bootstrapped **Flask 1.0** project with some neat features 
 First you need to create an Environment file. To do so, inside the projects root folder create a file named **.env** with the following _key-value_ table:
 ```python
 APP_ENV=localhost
-SECRET_KEY=<SECRET KEY>
-SQLALCHEMY_DATABASE_URI=<SQLACHEMY DATABASE URL>
-BASIC_AUTH_USERNAME=<BASIC AUTH USERNAME>
-BASIC_AUTH_PASSWORD=<BASIC AUTH PASSWORD>
+SECRET_KEY=KeepThisS3cr3t
+SQLALCHEMY_DATABASE_URI=postgresql://localhost/database
+BASIC_AUTH_USERNAME=me
+BASIC_AUTH_PASSWORD=me
 ```
 
 > **Note:** To generate a fresh **SECRET_KEY** you can select any key from this website: [http://randomkeygen.com/](http://randomkeygen.com/)
